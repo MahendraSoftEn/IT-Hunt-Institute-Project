@@ -32,7 +32,7 @@ function NewDashBoard() {
         switch (id) {
 
             case 1:
-                return "PythonQuestion";
+                return "OnlineTestMCQ";
             case 2:
                 return "JavascriptQuestion";
             case 3:
@@ -102,7 +102,6 @@ function NewDashBoard() {
                         source={item.logo}
                         style={[dashBoardStyle.topicImage]}
                     />
-
                 </View>
                 <View />
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Text,
     View,
@@ -15,16 +15,15 @@ import {
 } from 'react-native';
 
 
-import { Images } from "../../../../utilities/Images";
-import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
+import { Images } from "../../../../utilities/Images";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import LoadingModal from "../../../Component/LoadingModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginValidationSchema } from "../../../../utilities/Validation";
 import { screenHeight, screenWidth } from "../../../../utilities/responsive";
-import { useDispatch, useSelector } from "react-redux";
 import { removeState, setCount, setRegistrationData } from "../../../../utilities/MyStore/Dashboard/dashboard";
-import { useEffect } from "react";
-import LoadingModal from "../../../Component/LoadingModal";
 
 function LoginScreen() {
 
@@ -68,9 +67,7 @@ function LoginScreen() {
         setTimeout(() => {
             var isExist = false;
             data?.map((item, index) => {
-
                 if (values.username.toLowerCase() == item.name.toLowerCase() && values.password == item.password) {
-
                     isExist = true;
                     return;
                 }
@@ -84,9 +81,7 @@ function LoginScreen() {
             setUserName("");
             setPassword("");
         }, 3000);
-
     }
-
     const registerStudent = () => {
 
         setIsLoading(true);
@@ -106,14 +101,8 @@ function LoginScreen() {
             setIsLoading(false);
             setActiveView(0);
         }, 3000)
-
-
-
     }
-
-
     return (
-
         <KeyboardAvoidingView style={Styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View
@@ -128,9 +117,6 @@ function LoginScreen() {
                             />
                             <Text style={{ fontSize: 12, color: "#194880", marginTop: screenHeight * 0.02 }}>IT Hunt the Institute of Computer Technology</Text>
                         </View>
-
-
-
                         <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: screenHeight * 0.03, padding: 3 }}>
                             <TouchableOpacity
                                 style={{ padding: 3 }}
@@ -199,9 +185,6 @@ function LoginScreen() {
                                                         value={values.password}
                                                         secureTextEntry={showhidePassword ? true : false}
                                                     />
-
-
-
                                                     <TouchableOpacity
                                                         onPress={() => {
                                                             setshowhidePassword(!showhidePassword);
@@ -217,8 +200,6 @@ function LoginScreen() {
                                                     {errors.password &&
                                                         <Text style={{ fontSize: 10, color: 'red', top: -20 }}>{errors.password}</Text>
                                                     }
-
-
                                                 </View>
                                                 <View style={{}}>
                                                     <TouchableOpacity
@@ -226,9 +207,7 @@ function LoginScreen() {
                                                         style={Styles.loginButton}>
                                                         <Text style={Styles.loginText}>Sign In</Text>
                                                     </TouchableOpacity>
-
                                                 </View>
-
                                             </View>
                                         )}
                                     </Formik>
@@ -278,11 +257,7 @@ function LoginScreen() {
                                             style={Styles.inputBox}
                                             onChangeText={(text) => setSignUpPassword(text)}
                                             secureTextEntry={true}
-
-
                                         />
-
-
                                     </View>
                                     <View style={{}}>
                                         <TouchableOpacity
@@ -358,6 +333,6 @@ const Styles = StyleSheet.create({
         color: "white",
         fontSize: 16
     },
-    
-    
+
+
 })

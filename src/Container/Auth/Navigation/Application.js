@@ -20,6 +20,7 @@ import News from "../../News";
 import Fee from "../../Fee";
 import ImageGallery from "../../ImageGallery";
 import FeeRecipt from "../../Fee/FeeRecipt";
+import OnlineTestMCQ from "../../../Component/OnlineTestMCQ";
 
 
 
@@ -125,6 +126,11 @@ function Application() {
                 <Stack.Screen 
                 name="FeeRecipt" 
                 component={FeeRecipt} 
+               options={{headerShown: false}}
+               />
+                <Stack.Screen 
+                name="OnlineTestMCQ" 
+                component={OnlineTestMCQ} 
                options={{headerShown: false}}
                />
                 

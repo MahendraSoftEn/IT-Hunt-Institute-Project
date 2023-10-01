@@ -134,56 +134,56 @@ export const ITTeamData=[
 
 export const python_question=[
   {
-    question:"What is Python Programming Language."
+    question:"Who developed Python Programming Language?",
+    option:["Wick van Rossum","Rasmus Lerdorf","Guido van Rossum","Niene Stom"],
+    answer:"Guido van Rossum"
+  }, 
+  {
+    question:"Which type of Programming does Python support?",
+    option:["object-oriented programming","structured programming","functional programming","all of the mentioned"],
+    answer:"all of the mentioned"
   },
   {
-    question:"Explain List With Example."
+    question:"Describe Tupe with example in python.",
+    option:["object-oriented programming","structured programming","functional programming","all of the mentioned"],
+    answer:"all of the mentioned"
   },
   {
-    question:"Describe Tupe with example in python."
+    question:"Is Python case sensitive when dealing with identifiers?",
+    option:["no","yes","machine dependent","none of the mentioned"],
+    answer:"yes"
   },
   {
-    question:"What is Loop in Python with example."
-  },
+    question:"Which of the following is the correct extension of the Python file?",
+    option:[".python",".pl",".py",".p"],
+    answer:"yes"
+  },  
   {
-    question:"What is Python Programming Language"
-  },
+    question:"What will be the value of the following Python expression? (4 + 3 % 5)",
+    option:["7","2","4","1"],
+    answer:"7"
+  },  
   {
-    question:"What is Python Programming Language"
-  },
+    question:"Which keyword is used for function in Python language?",
+    option:["Function","def","Fun","Define"],
+    answer:"def"
+  },  
   {
-    question:"What is Python Programming Language"
-  },
+    question:"Which of the following functions can help us to find the version of python that we are currently",
+    option:["sys.version(1)","sys.version(0)","sys.version()","sys.version"],
+    answer:"sys.version"
+  },  
   {
-    question:"What is Python Programming Language"
-  },
+    question:"What does pip stand for python?",
+    option:["Pip Installs Python","Pip Installs Packages","Preferred Installer Program","All of the mentioned"],
+    answer:"sys.version"
+  },  
   {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"What is Python Programming Language hello everyone how are your please tell me about yourself"
-  },
-  {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"What is Python Programming Language"
-  },
-  {
-    question:"123What is Python Programming Language"
-  },
+    question:"Which of the following is the truncation division operator in Python?",
+    option:["|","//","/"," %"],
+    answer:"sys.version"
+  },  
+ 
 ];
 
 export const javascript_question=[
