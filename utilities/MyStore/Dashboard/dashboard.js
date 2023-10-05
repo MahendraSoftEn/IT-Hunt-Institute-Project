@@ -15,7 +15,6 @@ import { createSlice } from '@reduxjs/toolkit'
         if(!exists){
           state.registrationData.push(action.payload)
         }
-        
     },
     setCount(state,action){
       state.count=action.payload;

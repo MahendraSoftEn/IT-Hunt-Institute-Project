@@ -136,52 +136,52 @@ export const python_question=[
   {
     question:"Who developed Python Programming Language?",
     option:["Wick van Rossum","Rasmus Lerdorf","Guido van Rossum","Niene Stom"],
-    answer:"Guido van Rossum"
+    answer:3
   }, 
   {
     question:"Which type of Programming does Python support?",
     option:["object-oriented programming","structured programming","functional programming","all of the mentioned"],
-    answer:"all of the mentioned"
+    answer:4
   },
   {
     question:"Describe Tupe with example in python.",
     option:["object-oriented programming","structured programming","functional programming","all of the mentioned"],
-    answer:"all of the mentioned"
+    answer:4
   },
   {
     question:"Is Python case sensitive when dealing with identifiers?",
     option:["no","yes","machine dependent","none of the mentioned"],
-    answer:"yes"
+    answer:2
   },
   {
     question:"Which of the following is the correct extension of the Python file?",
     option:[".python",".pl",".py",".p"],
-    answer:"yes"
+    answer:3
   },  
   {
     question:"What will be the value of the following Python expression? (4 + 3 % 5)",
     option:["7","2","4","1"],
-    answer:"7"
+    answer:1
   },  
   {
     question:"Which keyword is used for function in Python language?",
     option:["Function","def","Fun","Define"],
-    answer:"def"
+    answer:2
   },  
   {
     question:"Which of the following functions can help us to find the version of python that we are currently",
     option:["sys.version(1)","sys.version(0)","sys.version()","sys.version"],
-    answer:"sys.version"
+    answer:4
   },  
   {
     question:"What does pip stand for python?",
     option:["Pip Installs Python","Pip Installs Packages","Preferred Installer Program","All of the mentioned"],
-    answer:"sys.version"
+    answer:4
   },  
   {
     question:"Which of the following is the truncation division operator in Python?",
     option:["|","//","/"," %"],
-    answer:"sys.version"
+    answer:3
   },  
  
 ];

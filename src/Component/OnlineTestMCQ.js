@@ -3,29 +3,66 @@ import { Text, TouchableOpacity, View, FlatList, StyleSheet } from 'react-native
 import BlueHeader from './BlueHeader';
 import { python_question } from '../../utilities/AllData/ithuntdata';
 import OnlineSubmitView from './OnlineSubmitView';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeQuizState, setAttemptQuestion, setCorrectAnswer, setNonAttemptQuestion, setWrongAnswer } from '../../utilities/MyStore/MCQTest/QuizData';
+
 
 
 
 function OnlineTestMCQ() {
 
   const mcqData = ["Object Oriented", "Procedure Language", "Both", "None of the above"];
-  const [selectedOption, setSelectionOption] =useState(null);
-  const [visible,setVisible]=useState(false);
-  const [questionIndex,setQuestionIndex]=useState(0);
-  const [submit,setSubmit]=useState(false);
-  const [submitView,setSubmitVisible]=useState(false);
+
+  const dispatch=useDispatch();
+  const [selectedOption, setSelectionOption] = useState(null);
+  const [visible, setVisible] = useState(false);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [submit, setSubmit] = useState(false);
+  const [submitView, setSubmitVisible] = useState(false);
 
 
-  const nextFunction=()=>{
-    if(questionIndex<python_question.length-1){
-      setQuestionIndex(questionIndex+1);
+  useEffect(()=>{
+
+    dispatch(removeQuizState());
+  },[])
+
+  const attemptQuestion=useSelector((state)=> state.QuizData.attemptQuestion);
+  const nonAttemptQuestion=useSelector((state)=> state.QuizData.nonAttemptQuestion);
+  const correctAnswer=useSelector((state)=> state.QuizData.correctAnswer);
+  const wrongAnswer=useSelector((state)=> state.QuizData.wrongAnswer);
+
+  console.log("attemp===>",attemptQuestion);
+  const nextFunction = () => {
+    if (questionIndex < python_question.length - 1) {
+
+      if(selectedOption!=null){
+        dispatch(setAttemptQuestion(attemptQuestion+1));
+      }else{
+        dispatch(setNonAttemptQuestion(nonAttemptQuestion+1));
+      }
+      checkAnswerCorrect();
+      setQuestionIndex(questionIndex + 1);
       setSelectionOption(null);
       setVisible(false);
-      
-    }else{
+
+    } else {
+      if(selectedOption!=null){
+        dispatch(setAttemptQuestion(attemptQuestion+1));
+      }else{
+        dispatch(setNonAttemptQuestion(nonAttemptQuestion+1));
+      }
       setSubmit(true);
     }
 
+  }
+
+  const checkAnswerCorrect=()=>{
+
+      if((selectedOption+1)==python_question[questionIndex].answer){
+        dispatch(setCorrectAnswer(correctAnswer+1));
+      }else{
+        dispatch(setWrongAnswer(wrongAnswer+1));
+      }
   }
   return (
     <View style={{ flex: 1 }}>
@@ -34,101 +71,91 @@ function OnlineTestMCQ() {
       />
       <View style={[styles.container]}>
 
-      <View style={[styles.buttonContainer]}>
-          <TouchableOpacity style={{ padding: 10, backgroundColor: "#00B2F4", borderRadius: 10 }}>
-            <Text style={{ color: "white" }}>Correct Answer</Text>
-            <Text style={{color:"white",textAlign:"center"}}>0</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ padding: 10, backgroundColor: "#FF515D", borderRadius: 10 }}>
+        <View style={[styles.buttonContainer]}>
+          <View style={{ padding: 10, borderRadius: 10 }}>
+            <Text style={{ color: "#194880",fontSize:20 }}>Attempted Question</Text>
+            <View style={{backgroundColor: "#00B2F4",width:50,height:30,justifyContent:"center",alignSelf:"center",borderRadius:3,marginVertical:10}}>
+            <Text style={{ color: "white", textAlign: "center", }}>{attemptQuestion}</Text>
+            </View>
+       
+          </View>
+          {/* <TouchableOpacity style={{ padding: 10, backgroundColor: "#FF515D", borderRadius: 10 }}>
             <Text style={{ color: "white" }}>Wrong Answer</Text>
-            <Text style={{color:"white",textAlign:"center"}}>0</Text>
-          </TouchableOpacity>
+            <Text style={{ color: "white", textAlign: "center" }}>0</Text>
+          </TouchableOpacity> */}
         </View>
 
         {
-          submitView?
+          submitView ?
             <OnlineSubmitView />
-        :
-<View style={[styles.optionViewContainer]}>
-  
-       
-        <View style={[styles.questionOptionContainer]}>
-
-          <View style={{ alignItems: 'center' }}>
-            <Text style={[styles.questionText]}>{(questionIndex+1+".") + python_question[questionIndex]?.question}</Text>
-          </View>
-          <View style={[styles.optionContainer]}>
-
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={[styles.circleButton,{backgroundColor:selectedOption==0&&visible?"green":"white"}]}
-                onPress={()=>{
-                  setSelectionOption(0);
-                  setVisible(true);
-                }}
-              />
-              <View>
-                <Text style={{ fontSize: 16, color: "#8C8896" }}> {python_question[questionIndex]?.option[0]}</Text>
+            :
+            <View style={[styles.optionViewContainer]}>
+              <View style={[styles.questionOptionContainer]}>
+                <View style={{ alignItems: 'center' }}>
+                  <Text style={[styles.questionText]}>{(questionIndex + 1 + ".") + python_question[questionIndex]?.question}</Text>
+                </View>
+                <View style={[styles.optionContainer]}>
+                  <View style={{ flexDirection: "row" }}>
+                    <TouchableOpacity style={[styles.circleButton, { backgroundColor: selectedOption == 0 && visible ? "green" : "white" }]}
+                      onPress={() => {
+                        setSelectionOption(0);
+                        setVisible(true);
+                      }}
+                    />
+                    <View>
+                      <Text style={{ fontSize: 16, color: "#8C8896" }}> {python_question[questionIndex]?.option[0]}</Text>
+                    </View>
+                  </View>
+                  <View style={[styles.optionMainView]}>
+                    <TouchableOpacity style={[styles.circleButton, { backgroundColor: selectedOption == 1 && visible ? "green" : "white" }]}
+                      onPress={() => {
+                        setSelectionOption(1);
+                        setVisible(true);
+                      }}
+                    />
+                    <View style={{}}>
+                      <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[1]}</Text>
+                    </View>
+                  </View>
+                  <View style={[styles.optionMainView]}>
+                    <TouchableOpacity style={[styles.circleButton, { backgroundColor: selectedOption == 2 && visible ? "green" : "white" }]}
+                      onPress={() => {
+                        setSelectionOption(2);
+                        setVisible(true);
+                      }}
+                    />
+                    <View style={{}}>
+                      <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[2]}</Text>
+                    </View>
+                  </View>
+                  <View style={[styles.optionMainView]}>
+                    <TouchableOpacity style={[styles.circleButton, { backgroundColor: selectedOption == 3 && visible ? "green" : "white" }]}
+                      onPress={() => {
+                        setSelectionOption(3);
+                        setVisible(true);
+                      }}
+                    />
+                    <View style={{}}>
+                      <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[3]}</Text>
+                    </View>
+                  </View>
+                </View>
               </View>
-
-            </View>
-
-            <View style={[styles.optionMainView]}>
-              <TouchableOpacity style={[styles.circleButton,{backgroundColor:selectedOption==1&&visible?"green":"white"}]}
-                 onPress={()=>{
-                  setSelectionOption(1);
-                  setVisible(true);
+              <TouchableOpacity style={[styles.nextButton]}
+                onPress={() => {
+                  if (submit) {
+                    setSubmitVisible(true);
+                  } else {
+                    nextFunction();
+                  }
                 }}
-              />
-              <View style={{}}>
-                <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[1]}</Text>
-              </View>
+              >
+                <Text style={{ fontSize: 16, color: "white" }}>{submit ? "Submit" : "Next"}</Text>
+              </TouchableOpacity>
             </View>
+        }
 
-            <View style={[styles.optionMainView]}>
-              <TouchableOpacity style={[styles.circleButton,{backgroundColor:selectedOption==2&&visible?"green":"white"}]} 
-                onPress={()=>{
-                  setSelectionOption(2);
-                  setVisible(true);
-                }}
-              />
-              <View style={{}}>
-                <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[2]}</Text>
-              </View>
-            </View>
-
-            <View style={[styles.optionMainView]}>
-              <TouchableOpacity style={[styles.circleButton,{backgroundColor:selectedOption==3&&visible?"green":"white"}]}
-                onPress={()=>{
-                  setSelectionOption(3);
-                  setVisible(true);
-                }}
-              />
-              <View style={{}}>
-                <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[3]}</Text>
-              </View>
-            </View>
-
-          </View>
-        </View>
-
-        <TouchableOpacity style={[styles.nextButton]}
-          onPress={()=>{
-
-            if(submit){
-              setSubmitVisible(true);
-            }else{
-              nextFunction();
-            }
-           
-            
-          }}
-        >
-          <Text style={{fontSize:16,color:"white"}}>{submit?"Submit":"Next"}</Text>
-        </TouchableOpacity>
       </View>
-      }
-      
-</View>
     </View>
   );
 }
@@ -142,15 +169,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   buttonContainer: {
-    justifyContent: "space-between",
-    flexDirection: "row",
-    marginHorizontal: 10
+    // justifyContent: "space-between",
+    // flexDirection: "row",
+    marginHorizontal: 10,
+    alignSelf:"center"
   },
-  optionViewContainer:{
-    backgroundColor:"white",
-    elevation:4,
-    padding:1,
-    marginTop:10
+  optionViewContainer: {
+    backgroundColor: "white",
+    elevation: 4,
+    padding: 1,
+    marginTop: 10
   },
   questionOptionContainer: {
     // borderWidth: 1,
@@ -188,12 +216,12 @@ const styles = StyleSheet.create({
     height: 20,
     marginRight: 10
   },
-  nextButton:{
-    backgroundColor:"#194880",
-    padding:10,
-    alignSelf:"flex-end",
-    margin:10,
-    paddingHorizontal:20,
-    borderRadius:10
+  nextButton: {
+    backgroundColor: "#194880",
+    padding: 10,
+    alignSelf: "flex-end",
+    margin: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10
   }
 })
