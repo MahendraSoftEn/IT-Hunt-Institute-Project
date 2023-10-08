@@ -31,6 +31,7 @@ function OnlineTestMCQ() {
   const correctAnswer=useSelector((state)=> state.QuizData.correctAnswer);
   const wrongAnswer=useSelector((state)=> state.QuizData.wrongAnswer);
 
+  console.log("correct Answer ===>1=>",correctAnswer)
   console.log("attemp===>",attemptQuestion);
   const nextFunction = () => {
     if (questionIndex < python_question.length - 1) {
@@ -47,6 +48,7 @@ function OnlineTestMCQ() {
 
     } else {
       if(selectedOption!=null){
+        checkAnswerCorrect();
         dispatch(setAttemptQuestion(attemptQuestion+1));
       }else{
         dispatch(setNonAttemptQuestion(nonAttemptQuestion+1));
@@ -59,7 +61,9 @@ function OnlineTestMCQ() {
   const checkAnswerCorrect=()=>{
 
       if((selectedOption+1)==python_question[questionIndex].answer){
-        dispatch(setCorrectAnswer(correctAnswer+1));
+        console.log("correct Answer===>1",correctAnswer);
+        dispatch(setCorrectAnswer(1+correctAnswer));
+        console.log("correct Answer===>2",correctAnswer);
       }else{
         dispatch(setWrongAnswer(wrongAnswer+1));
       }

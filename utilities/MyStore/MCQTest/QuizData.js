@@ -19,6 +19,7 @@ import { createSlice } from '@reduxjs/toolkit'
         state.nonAttemptQuestion=action.payload;
     },
     setCorrectAnswer(state,action){
+      console.log("action===>",action)
         state.correctAnswer=action.payload;
     },
     setWrongAnswer(state,action){
