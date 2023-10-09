@@ -21,6 +21,7 @@ import Fee from "../../Fee";
 import ImageGallery from "../../ImageGallery";
 import FeeRecipt from "../../Fee/FeeRecipt";
 import OnlineTestMCQ from "../../../Component/OnlineTestMCQ";
+import PreivewImage from "../../ImageGallery/PreivewImage";
 
 
 
@@ -133,9 +134,13 @@ function Application() {
                 component={OnlineTestMCQ} 
                options={{headerShown: false}}
                />
+                <Stack.Screen 
+                name="PreivewImage" 
+                component={PreivewImage} 
+               options={{headerShown: false}}
+               />
                 
-        {/* <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Settings" component={Settings} /> */}
+        
             </Stack.Navigator>
         </NavigationContainer>
     );

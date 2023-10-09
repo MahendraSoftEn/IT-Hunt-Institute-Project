@@ -148,135 +148,130 @@ export const python_question=[
     option:["object-oriented programming","structured programming","functional programming","all of the mentioned"],
     answer:4
   },
-  // {
-  //   question:"Is Python case sensitive when dealing with identifiers?",
-  //   option:["no","yes","machine dependent","none of the mentioned"],
-  //   answer:2
-  // },
-  // {
-  //   question:"Which of the following is the correct extension of the Python file?",
-  //   option:[".python",".pl",".py",".p"],
-  //   answer:3
-  // },  
-  // {
-  //   question:"What will be the value of the following Python expression? (4 + 3 % 5)",
-  //   option:["7","2","4","1"],
-  //   answer:1
-  // },  
-  // {
-  //   question:"Which keyword is used for function in Python language?",
-  //   option:["Function","def","Fun","Define"],
-  //   answer:2
-  // },  
-  // {
-  //   question:"Which of the following functions can help us to find the version of python that we are currently",
-  //   option:["sys.version(1)","sys.version(0)","sys.version()","sys.version"],
-  //   answer:4
-  // },  
-  // {
-  //   question:"What does pip stand for python?",
-  //   option:["Pip Installs Python","Pip Installs Packages","Preferred Installer Program","All of the mentioned"],
-  //   answer:4
-  // },  
-  // {
-  //   question:"Which of the following is the truncation division operator in Python?",
-  //   option:["|","//","/"," %"],
-  //   answer:3
-  // },  
+  {
+    question:"Is Python case sensitive when dealing with identifiers?",
+    option:["no","yes","machine dependent","none of the mentioned"],
+    answer:2
+  },
+  {
+    question:"Which of the following is the correct extension of the Python file?",
+    option:[".python",".pl",".py",".p"],
+    answer:3
+  },  
+  {
+    question:"What will be the value of the following Python expression? (4 + 3 % 5)",
+    option:["7","2","4","1"],
+    answer:1
+  },  
+  {
+    question:"Which keyword is used for function in Python language?",
+    option:["Function","def","Fun","Define"],
+    answer:2
+  },  
+  {
+    question:"Which of the following functions can help us to find the version of python that we are currently",
+    option:["sys.version(1)","sys.version(0)","sys.version()","sys.version"],
+    answer:4
+  },  
+  {
+    question:"What does pip stand for python?",
+    option:["Pip Installs Python","Pip Installs Packages","Preferred Installer Program","All of the mentioned"],
+    answer:4
+  },  
+  {
+    question:"Which of the following is the truncation division operator in Python?",
+    option:["|","//","/"," %"],
+    answer:3
+  },  
  
 ];
 
 export const javascript_question=[
   {
-    question:"what is Javascript explain with example."
-  },
+    question:" Which type of JavaScript language is ___",
+    option:["Object-Oriented","Object-Based","Assembly-language","High-level"],
+    answer:2
+  },  
   {
-    question:"what is Javascript explain with example."
-  },
+    question:" Arrays in JavaScript are defined by which of the following statements?",
+    option:["It is an ordered list of values","It is an ordered list of objects","It is an ordered list of string","It is an ordered list of functions"],
+    answer:1
+  },  
+  
   {
-    question:"what is Javascript explain with example."
-  },
+    question:"var js = (function(x) {return x*x;}(10));",
+    option:["Exception will be thrown","Memory leak","Error","Yes, perfectly"],
+    answer:4
+  },   
   {
-    question:"what is Javascript explain with example."
-  },
+    question:"Which of the following is not javascript data types?",
+    option:["Null type","Undefined type","Number type","All of the mentioned"],
+    answer:4
+  },  
   {
-    question:"what is Javascript explain with example."
-  },
-  {
-    question:"what is Javascript explain with example."
-  },
-  {
-    question:"what is Javascript explain with example."
-  },
-  {
-    question:"what is Javascript explain with example."
-  },
-  {
-    question:"what is Javascript explain with example."
-  },
-  {
-    question:"what is Javascript explain with example."
-  },
-  {
-    question:"what is Javascript explain with example."
-  },
+    question:"Which of the following can be used to call a JavaScript Code Snippet?",
+    option:["Function/Method","Preprocessor","Triggering Event","RMI%"],
+    answer:1
+  },  
+  
 ];
 
 export const IT_Tools_question=[
   {
-    question:"What is IT Tools define with example."
+    question:"What is internet?",
+    option:["A network of interconnected local area networks","A collection of unrelated computers","Interconnection of wide area networks","A single network"],
+    answer:3
+  },   
+  {
+    question:"Which of the following is an example of Bluetooth?",
+    option:["wide area network","virtual private network","local area network","personal area network"],
+    answer:4
+  },  
+  {
+    question:"What is the full form of OSI?",
+    option:["optical service implementation","open service Internet","open system interconnection","operating system interface"],
+    answer:3
   },
   {
-    question:"What is IT Tools define with example."
+    question:"How many layers are there in the ISO OSI reference model?",
+    option:["7","5","4","3"],
+    answer:1
   },
   {
-    question:"What is IT Tools define with example."
-  },
-  {
-    question:"What is IT Tools define with example."
-  },
-  {
-    question:"What is IT Tools define with example."
-  },
-  {
-    question:"What is IT Tools define with example."
-  },
-  {
-    question:"What is IT Tools define with example."
-  },
-  {
-    question:"What is IT Tools define with example."
-  },
-  {
-    question:"What is IT Tools define with example."
-  },
+    question:"Which one of the following is not a function of network layer?",
+    option:["congestion control","error control","routing","inter-networking"],
+    answer:2
+  }, 
+   
 ];
 
 export const HTML_question=[
   {
-    question:"What is HTML with Example and program."
+    question:"What is HTML?",
+    option:["HTML describes the structure of a webpage","HTML is the standard markup language mainly used to create web pages","HTML consists of a set of elements that helps the browser how to view the content","All of the mentioned"],
+    answer:4
+  },   
+  {
+    question:"Who is the father of HTML?",
+    option:["Rasmus Lerdorf","Tim Berners-Lee","Brendan Eich","Sergey Brin"],
+    answer:2
   },
   {
-    question:"What is HTML with Example and program."
-  },
+    question:" HTML stands for __________",
+    option:["HyperText Markup Language","HyperText Machine Language","HyperText Marking Language","HighText Marking Language"],
+    answer:1
+  }, 
   {
-    question:"What is HTML with Example and program."
-  },
+    question:"Which of the following tag is used for inserting the largest heading in HTML?",
+    option:["head","<h6>","<h1>","heading"],
+    answer:2
+  }, 
   {
-    question:"What is HTML with Example and program."
-  },
-  {
-    question:"What is HTML with Example and program."
-  },
-  {
-    question:"What is HTML with Example and program."
-  },
-  {
-    question:"What is HTML with Example and program."
-  },
-  {
-    question:"What is HTML with Example and program."
-  },
+    question:"What is the correct syntax of doctype in HTML5?",
+    option:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html></doctype>"],
+    answer:1
+  }, 
+   
 ];
 
 // mcq python question

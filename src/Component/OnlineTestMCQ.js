@@ -9,11 +9,11 @@ import { removeQuizState, setAttemptQuestion, setCorrectAnswer, setNonAttemptQue
 
 
 
-function OnlineTestMCQ() {
+function OnlineTestMCQ(props) {
 
-  const mcqData = ["Object Oriented", "Procedure Language", "Both", "None of the above"];
-
-  const dispatch=useDispatch();
+   const OnlineTestData=props?.route?.params?.data;
+   const heading=props?.route?.params?.heading;
+  const dispatch = useDispatch();
   const [selectedOption, setSelectionOption] = useState(null);
   const [visible, setVisible] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -21,72 +21,71 @@ function OnlineTestMCQ() {
   const [submitView, setSubmitVisible] = useState(false);
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
     dispatch(removeQuizState());
-  },[])
+  }, [])
 
-  const attemptQuestion=useSelector((state)=> state.QuizData.attemptQuestion);
-  const nonAttemptQuestion=useSelector((state)=> state.QuizData.nonAttemptQuestion);
-  const correctAnswer=useSelector((state)=> state.QuizData.correctAnswer);
-  const wrongAnswer=useSelector((state)=> state.QuizData.wrongAnswer);
+  const attemptQuestion = useSelector((state) => state.QuizData.attemptQuestion);
+  const nonAttemptQuestion = useSelector((state) => state.QuizData.nonAttemptQuestion);
+  const correctAnswer = useSelector((state) => state.QuizData.correctAnswer);
+  const wrongAnswer = useSelector((state) => state.QuizData.wrongAnswer);
 
-  console.log("correct Answer ===>1=>",correctAnswer)
-  console.log("attemp===>",attemptQuestion);
+
   const nextFunction = () => {
-    if (questionIndex < python_question.length - 1) {
+    if (questionIndex < OnlineTestData.length - 1) {
 
-      if(selectedOption!=null){
-        dispatch(setAttemptQuestion(attemptQuestion+1));
-      }else{
-        dispatch(setNonAttemptQuestion(nonAttemptQuestion+1));
+      if (selectedOption != null) {
+        dispatch(setAttemptQuestion(attemptQuestion + 1));
+      } else {
+        dispatch(setNonAttemptQuestion(nonAttemptQuestion + 1));
       }
       checkAnswerCorrect();
       setQuestionIndex(questionIndex + 1);
       setSelectionOption(null);
       setVisible(false);
+      if (questionIndex == OnlineTestData.length - 2) {
+        setSubmit(true);
+      }
 
     } else {
-      if(selectedOption!=null){
+      if (selectedOption != null) {
         checkAnswerCorrect();
-        dispatch(setAttemptQuestion(attemptQuestion+1));
-      }else{
-        dispatch(setNonAttemptQuestion(nonAttemptQuestion+1));
+        dispatch(setAttemptQuestion(attemptQuestion + 1));
+      } else {
+        dispatch(setNonAttemptQuestion(nonAttemptQuestion + 1));
       }
-      setSubmit(true);
+
     }
 
   }
 
-  const checkAnswerCorrect=()=>{
+  const checkAnswerCorrect = () => {
 
-      if((selectedOption+1)==python_question[questionIndex].answer){
-        console.log("correct Answer===>1",correctAnswer);
-        dispatch(setCorrectAnswer(1+correctAnswer));
-        console.log("correct Answer===>2",correctAnswer);
-      }else{
-        dispatch(setWrongAnswer(wrongAnswer+1));
-      }
+    if ((selectedOption + 1) == OnlineTestData[questionIndex].answer) {
+      
+      dispatch(setCorrectAnswer(1 + correctAnswer));
+      
+    } else {
+      dispatch(setWrongAnswer(wrongAnswer + 1));
+    }
   }
   return (
     <View style={{ flex: 1 }}>
       <BlueHeader
-        heading={"Python Online Test "}
+        heading={heading}
       />
       <View style={[styles.container]}>
 
         <View style={[styles.buttonContainer]}>
           <View style={{ padding: 10, borderRadius: 10 }}>
-            <Text style={{ color: "#194880",fontSize:20 }}>Attempted Question</Text>
-            <View style={{backgroundColor: "#00B2F4",width:50,height:30,justifyContent:"center",alignSelf:"center",borderRadius:3,marginVertical:10}}>
-            <Text style={{ color: "white", textAlign: "center", }}>{attemptQuestion}</Text>
+            <Text style={{ color: "#194880", fontSize: 20 }}>Attempted Question</Text>
+            <View style={{ backgroundColor: "#00B2F4", width: 50, height: 30, justifyContent: "center", alignSelf: "center", borderRadius: 3, marginVertical: 10 }}>
+              <Text style={{ color: "white", textAlign: "center", }}>{attemptQuestion}</Text>
             </View>
-       
+
           </View>
-          {/* <TouchableOpacity style={{ padding: 10, backgroundColor: "#FF515D", borderRadius: 10 }}>
-            <Text style={{ color: "white" }}>Wrong Answer</Text>
-            <Text style={{ color: "white", textAlign: "center" }}>0</Text>
-          </TouchableOpacity> */}
+
         </View>
 
         {
@@ -96,7 +95,7 @@ function OnlineTestMCQ() {
             <View style={[styles.optionViewContainer]}>
               <View style={[styles.questionOptionContainer]}>
                 <View style={{ alignItems: 'center' }}>
-                  <Text style={[styles.questionText]}>{(questionIndex + 1 + ".") + python_question[questionIndex]?.question}</Text>
+                  <Text style={[styles.questionText]}>{(questionIndex + 1 + ".") + OnlineTestData[questionIndex]?.question}</Text>
                 </View>
                 <View style={[styles.optionContainer]}>
                   <View style={{ flexDirection: "row" }}>
@@ -106,8 +105,8 @@ function OnlineTestMCQ() {
                         setVisible(true);
                       }}
                     />
-                    <View>
-                      <Text style={{ fontSize: 16, color: "#8C8896" }}> {python_question[questionIndex]?.option[0]}</Text>
+                    <View style={{width:250}}>
+                      <Text style={{ fontSize: 16, color: "#8C8896" }}> {OnlineTestData[questionIndex]?.option[0]}</Text>
                     </View>
                   </View>
                   <View style={[styles.optionMainView]}>
@@ -117,8 +116,8 @@ function OnlineTestMCQ() {
                         setVisible(true);
                       }}
                     />
-                    <View style={{}}>
-                      <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[1]}</Text>
+                    <View style={{width:250}}>
+                      <Text style={[styles.optionText]}> {OnlineTestData[questionIndex]?.option[1]}</Text>
                     </View>
                   </View>
                   <View style={[styles.optionMainView]}>
@@ -128,8 +127,8 @@ function OnlineTestMCQ() {
                         setVisible(true);
                       }}
                     />
-                    <View style={{}}>
-                      <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[2]}</Text>
+                    <View style={{width:250}}>
+                      <Text style={[styles.optionText]}> {OnlineTestData[questionIndex]?.option[2]}</Text>
                     </View>
                   </View>
                   <View style={[styles.optionMainView]}>
@@ -139,8 +138,8 @@ function OnlineTestMCQ() {
                         setVisible(true);
                       }}
                     />
-                    <View style={{}}>
-                      <Text style={[styles.optionText]}> {python_question[questionIndex]?.option[3]}</Text>
+                    <View style={{width:250}}>
+                      <Text style={[styles.optionText]}> {OnlineTestData[questionIndex]?.option[3]}</Text>
                     </View>
                   </View>
                 </View>
@@ -148,6 +147,7 @@ function OnlineTestMCQ() {
               <TouchableOpacity style={[styles.nextButton]}
                 onPress={() => {
                   if (submit) {
+                    nextFunction();
                     setSubmitVisible(true);
                   } else {
                     nextFunction();
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     // justifyContent: "space-between",
     // flexDirection: "row",
     marginHorizontal: 10,
-    alignSelf:"center"
+    alignSelf: "center"
   },
   optionViewContainer: {
     backgroundColor: "white",

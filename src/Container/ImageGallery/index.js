@@ -3,12 +3,14 @@ import { FlatList, Text, View,Image, TouchableOpacity, Modal } from 'react-nativ
 import BlueHeader from '../../Component/BlueHeader';
 import { Images } from '../../../utilities/Images';
 import { screenHeight, screenWidth } from '../../../utilities/responsive';
+import { useNavigation } from '@react-navigation/native';
 
 
  function ImageGallery() {
 
     const [visible,setVisible]=useState(false);
     const [selectedImage,setSelectedImage]=useState("");
+    const navigation=useNavigation();
 
   const data=[
     {
@@ -45,12 +47,12 @@ import { screenHeight, screenWidth } from '../../../utilities/responsive';
     return(
       <TouchableOpacity 
        onPress={()=>{
-        setSelectedImage(item.image);
-        setVisible(true)
+        navigation.navigate("PreivewImage",{imageData:item?.image})
        }}
       style={{margin:10}}>
          <Image
           source={item.image}
+          resizeMode='stretch'
           style={{width:100,height:100}}
          />
       </TouchableOpacity>
@@ -71,35 +73,7 @@ import { screenHeight, screenWidth } from '../../../utilities/responsive';
           />
         </View>
         <View>
-        <Modal
-        visible={visible}
-        transparent={true}
-        >
-            <View style={{flex:1,backgroundColor:"rgba(0,0,0,0.5)",marginTop:screenHeight*0.02}}>
-              <TouchableOpacity
-              style={{backgroundColor:"white",flexDirection:"row",justifyContent:"space-between",paddingHorizontal:10,borderBottomWidth:1,borderColor:"#8C8896"}}
-               onPress={()=>{
-                setVisible(false)
-               }}
-              >
-                <Text style={{fontSize:18,paddingHorizontal:10}}>{"Back"}</Text>
-                <Text>20 Apr 2023</Text>
-
-              </TouchableOpacity>
-              {
-                selectedImage?
-                <Image 
-                source={selectedImage}
-                style={{width:screenWidth,height:screenHeight}}
-               />
-               :
-                null
-              }
-              
-            
-            </View>
-
-        </Modal>
+       
         </View>
     </View>
   );

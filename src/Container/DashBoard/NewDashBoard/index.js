@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import SideBarComponent from './SideBar';
 import dashBoardStyle from './dashboardStyle';
-import { moduelData, topic } from '../../../../utilities/AllData/ithuntdata';
+import { HTML_question, IT_Tools_question, javascript_question, moduelData, python_question, topic } from '../../../../utilities/AllData/ithuntdata';
 import { Courses } from '../../../../utilities/AllData/ithuntdata';
 import { teachingStaff } from '../../../../utilities/AllData/ithuntdata';
 import { View, Text, Image, dashBoardStylehee, TouchableOpacity, FlatList, ScrollView, LogBox, Dimensions } from 'react-native';
@@ -27,20 +27,34 @@ function NewDashBoard() {
 
     }, [])
 
-    const getRedirectTopicComponent = (id) => {
+    const getHeading = (id) => {
 
         switch (id) {
 
             case 1:
-                return "OnlineTestMCQ";
+                return "Python Test";
             case 2:
-                return "JavascriptQuestion";
+                return "javascript Test";
             case 3:
-                return "HTMLQuestion";
+                return "HTML Test";
             case 4:
-                return "ITToolsQuestion";
-            default:
-                return "NewDashBoard";
+                return "IT TOols Test";
+            
+        }
+    }
+    const getOnlineTestData = (id) => {
+
+        switch (id) {
+
+            case 1:
+                return python_question;
+            case 2:
+                return javascript_question;
+            case 3:
+                return HTML_question;
+            case 4:
+                return IT_Tools_question;
+            
         }
     }
 
@@ -115,18 +129,12 @@ function NewDashBoard() {
                     <View style={{ flexDirection: "row", alignSelf:"center", margin: 5 }}>
                         <TouchableOpacity
                             onPress={() => {
-                                navigation.navigate(getRedirectTopicComponent(item.id), { heading: "MCQ Test", isQuestion: false });
+                                navigation.navigate("OnlineTestMCQ", { heading: getHeading(item?.id), data: getOnlineTestData(item?.id) });
                             }}
                             style={[dashBoardStyle.buttonStyle("#00B2F4")]}>
                             <Text style={{ color: "white" }}>MCQ</Text>
                         </TouchableOpacity>
-                        {/* <TouchableOpacity
-                            onPress={() => {
-                                navigation.navigate(getRedirectTopicComponent(item.id), { heading: "Question", isQuestion: true });
-                            }}
-                            style={dashBoardStyle.buttonStyle("#FF515D")}>
-                            <Text style={{ color: "white" }}>Question</Text>
-                        </TouchableOpacity> */}
+                       
                     </View>
                 </View>
 
