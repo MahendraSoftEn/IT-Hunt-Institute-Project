@@ -42,15 +42,15 @@ function FeeRecipt(props) {
                 heading={"Fee Recipt"}
             />
             <ViewShot ref={viewref}>
-
-            <View style={{ alignItems: "center", marginTop: screenHeight * 0.03 }} >
+            <View style={{backgroundColor:"white",paddingVertical:30}}>
+            <View style={{ alignItems: "center", marginTop: screenHeight * 0.03,backgroundColor:"white" }} >
                 <Image
                     source={Images.ithuntlogo}
                     style={{ width: screenWidth * 0.50, height: screenHeight * 0.27, borderRadius: 80 }}
 
                 />
             </View>
-            <View style={{ marginTop: screenHeight * 0.05 }}>
+            <View style={{ marginTop: screenHeight * 0.05,backgroundColor:"white" }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
                     <View>
                         <Text style={{ color: "#194880", fontSize: 16 }}>Paid year:</Text>
@@ -84,7 +84,7 @@ function FeeRecipt(props) {
                     </View>
                 </View>
             </View>
-
+            </View>
             </ViewShot>
             <TouchableOpacity 
             onPress={ShareImage}

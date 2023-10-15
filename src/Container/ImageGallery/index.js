@@ -20,12 +20,14 @@ function ImageGallery() {
  useEffect(()=>{
 
   retrieveData();
+  // removeData();
  },[])
   const storeData = async (data) => {
     try {
       // You can store a key-value pair
       
       let array=[...imageData,data];
+      console.log("array data==>12",array.length);
       const userJSON = JSON.stringify(array);
       await AsyncStorage.setItem('image', userJSON);
       console.log('Data stored successfully.');
@@ -34,15 +36,23 @@ function ImageGallery() {
     }
     retrieveData();
   };
+  const removeData = async () => {
+    try {
+      await AsyncStorage.removeItem('image');
+      console.log('Data removed successfully.');
+    } catch (error) {
+      console.error('Error removing data: ', error);
+    }
+  };
   const retrieveData = async () => {
     try {
         const data = await AsyncStorage.getItem('image');
       if (data !== null) {
         // Data is retrieved successfully
         const user = JSON.parse(data);
-
+         console.log("user===>",user)
         setImageData(user);
-        console.log("image data====>12",user);
+        // console.log("image data====>12",user);
         
       } else {
         // Data doesn't exist
@@ -84,13 +94,16 @@ function ImageGallery() {
 
   const renderImageList = ({ item, index }) => {
 
-    console.log("item===>",item)
+    // console.log("item===>",item)
     return (
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("PreivewImage", { imageData: item[0]?.uri })
         }}
-        style={{ margin: 7 }}>
+        style={{ margin: 7 }}
+        key={item.id}
+        >
+
         <Image
           source={{ uri: item[0]?.uri }}
           resizeMode='stretch'
@@ -100,7 +113,7 @@ function ImageGallery() {
     )
   }
 
-
+  const keyExtractor = (item, index) => index.toString();
 
   return (
     <View style={{flex:1}}>
@@ -111,7 +124,7 @@ function ImageGallery() {
       <View style={{margin:5,flex:1}}>
           <FlatList 
           numColumns={3}
-          keyExtractor={(item)=>String(item.id)}
+          keyExtractor={keyExtractor}
            data={imageData}
            renderItem={renderImageList}
           />

@@ -91,8 +91,11 @@ function Fee() {
 
       <ScrollView style={{ margin: 15 }}>
 
-        <View style={{ marginTop: 40 }}>
+        <View style={{ marginTop: 20 }}>
 
+          <View style={{top:8,left:10,backgroundColor:"white",zIndex:1,width:90,alignItems:"center"}}>
+            <Text style={{color:"#00B2F4",fontSize:15}}>Select Year</Text>
+          </View>
            <Dropdown
           style={[style.dropdown, isFocus && { borderColor: 'blue' }]}
           placeholderStyle={style.placeholderStyle}
@@ -100,7 +103,7 @@ function Fee() {
           inputSearchStyle={style.inputSearchStyle}
           iconStyle={style.iconStyle}
           data={data}
-          // search
+          search
           maxHeight={300}
           labelField="label"
           valueField="value"
@@ -115,8 +118,10 @@ function Fee() {
           }}
         />
         </View>
-        <View style={{ marginTop: 30 }}>
-
+        <View style={{ marginTop: 20 }}>
+        <View style={{top:8,left:10,backgroundColor:"white",zIndex:1,width:110,alignItems:"center"}}>
+            <Text style={{color:"#00B2F4",fontSize:15}}> Registration ID</Text>
+          </View>
         <Dropdown
           style={[style.dropdown, isFocus && { borderColor: 'blue' }]}
           placeholderStyle={style.placeholderStyle}
@@ -124,7 +129,7 @@ function Fee() {
           inputSearchStyle={style.inputSearchStyle}
           iconStyle={style.iconStyle}
           data={registerId}
-          // search
+          search
           maxHeight={300}
           labelField="label"
           valueField="value"
@@ -139,8 +144,10 @@ function Fee() {
           }}
         />
         </View>
-        <View style={{ marginTop: 30 }}>
-
+        <View style={{ marginTop: 20 }}>
+        <View style={{top:8,left:10,backgroundColor:"white",zIndex:1,width:110,alignItems:"center"}}>
+            <Text style={{color:"#00B2F4",fontSize:15}}> Student Name</Text>
+          </View>
         <Dropdown
           style={[style.dropdown, isFocus && { borderColor: 'blue' }]}
           placeholderStyle={style.placeholderStyle}
@@ -148,7 +155,7 @@ function Fee() {
           inputSearchStyle={style.inputSearchStyle}
           iconStyle={style.iconStyle}
           data={studentData}
-          // search
+          search
           maxHeight={300}
           labelField="label"
           valueField="value"
@@ -163,7 +170,10 @@ function Fee() {
           }}
         />
         </View>
-        <View style={[{ marginTop: 30 }]}>
+        <View style={[{ marginTop: 20 }]}>
+        <View style={{top:8,left:10,backgroundColor:"white",zIndex:1,width:70,alignItems:"center"}}>
+            <Text style={{color:"#00B2F4",fontSize:15}}>Amount</Text>
+          </View>
           <TextInput
             style={[style.dropdown]}
             keyboardType='numeric'
