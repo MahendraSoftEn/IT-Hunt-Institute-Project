@@ -11,7 +11,7 @@ function PreivewImage(props) {
 
     const images = [
         {
-            uri: "https://tse2.mm.bing.net/th?id=OIP.XPAe9YDnO-BTbD7ZA4cqwAHaFj&pid=Api&P=0&h=180"
+            uri: image
         }
     ];
 
@@ -22,15 +22,13 @@ function PreivewImage(props) {
                 heading={"Preview Image"}
             />
 
-            {/* <Image
-                source={image}
+            <Image
+                source={{ uri: image }}
                 style={{ width: screenWidth, height: screenHeight }}
-            /> */}
-            <Modal
-             visible={true}
-            >
-            <ImageViewer imageUrls={images}/>
-            </Modal>
+            />
+           
+            {/* <ImageViewer imageUrls={images}/> */}
+           
             
 
         </View>

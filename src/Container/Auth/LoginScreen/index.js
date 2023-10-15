@@ -36,42 +36,73 @@ function LoginScreen() {
     const [signUpPassword, setSignUpPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showhidePassword, setshowhidePassword] = useState(true);
-
+    const [LoginInfo,setLoginInfo]=useState([]);
     const dispatch = useDispatch();
 
     const data = useSelector((state) => state?.dashboardData?.registrationData);
     const register_count = useSelector((state) => state.dashboardData.count);
 
-    console.log("data==>", data)
+    
     useEffect(() => {
-
+          retrieveData();
+        //   removeData();
     }, [])
 
 
-    const _storeData = async () => {
-        const obj = {
-            "username": userName,
-            "password": password
-        }
+    const storeData = async (data) => {
         try {
-            const json = JSON.stringify(obj);
-            await AsyncStorage.setItem("login", json);
+          // You can store a key-value pair
+          
+          let array=[...LoginInfo,data];
+          const userJSON = JSON.stringify(array);
+          await AsyncStorage.setItem('logindata', userJSON);
+          console.log('Data stored successfully.');
         } catch (error) {
-            // Error saving data
+          console.error('Error storing data: ', error);
         }
-    };
+        retrieveData();
+      };
+      const removeData = async () => {
+        try {
+          await AsyncStorage.removeItem('logindata');
+          console.log('Data removed successfully.');
+        } catch (error) {
+          console.error('Error removing data: ', error);
+        }
+      };
+      const retrieveData = async () => {
+        try {
+            const data = await AsyncStorage.getItem('logindata');
+          if (data !== null) {
+            // Data is retrieved successfully
+            const user = JSON.parse(data);
 
+            setLoginInfo(user);
+            
+          } else {
+            // Data doesn't exist
+            console.log('No data found.');
+          }
+        } catch (error) {
+          console.error('Error retrieving data: ', error);
+        }
+      };
     const handleButtonClick = (values) => {
+
+        
 
         setIsLoading(true);
         setTimeout(() => {
             var isExist = false;
-            data?.map((item, index) => {
-                if (values.username.toLowerCase() == item.name.toLowerCase() && values.password == item.password) {
-                    isExist = true;
-                    return;
-                }
-            })
+            if(LoginInfo.length>0){
+                LoginInfo?.map((item, index) => {
+                    if (values?.username?.toLowerCase() == item?.name?.toLowerCase() && values?.password == item?.password) {
+                        isExist = true;
+                        return;
+                    }
+                })
+            }
+           
             if (isExist) {
                 navigation.navigate("NewDashBoard");
             } else {
@@ -94,6 +125,7 @@ function LoginScreen() {
             };
             dispatch(setCount(register_count + 1));
             dispatch(setRegistrationData(user_obj));
+            storeData(user_obj);
             alert("SuccessFully Registered");
             setSignUpEmail("");
             setSignUpPassword("");
