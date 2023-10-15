@@ -16,7 +16,7 @@ function SideBarComponent(props) {
         let mul_remove=[
             'logindata',
             'image'
-        ]
+        ];
         try {
           await AsyncStorage.multiRemove(mul_remove);
           dispatch(removeState());
