@@ -1,11 +1,31 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text, TouchableOpacity, View, StyleSheet, Image } from "react-native";
 import Modal from 'react-native-modal';
+import { useDispatch } from "react-redux";
+import { removeState } from "../../../../utilities/MyStore/Dashboard/dashboard";
 
 function SideBarComponent(props) {
 
     const navigation = useNavigation();
+    const dispatch=useDispatch();
+
+    const removeData = async () => {
+
+        let mul_remove=[
+            'logindata',
+            'image'
+        ]
+        try {
+          await AsyncStorage.multiRemove(mul_remove);
+          dispatch(removeState());
+          console.log('Data removed successfully.');
+        } catch (error) {
+          console.error('Error removing data: ', error);
+        }
+      };
+
 
     return (
         <Modal
@@ -119,6 +139,7 @@ function SideBarComponent(props) {
                     <View style={[styles.sideBarListBorder]} />
                     <TouchableOpacity style={[styles.sideBarListContainer]}
                      onPress={() => {
+                          removeData();
                         navigation.navigate("LoginScreen")
                     }}
                     >
