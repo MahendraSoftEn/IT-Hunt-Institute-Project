@@ -22,7 +22,7 @@ import { useNavigation } from "@react-navigation/native";
 import LoadingModal from "../../../Component/LoadingModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginValidationSchema } from "../../../../utilities/Validation";
-import { screenHeight, screenWidth } from "../../../../utilities/responsive";
+import { dynamicSize, getFontSize, hpx, screenHeight, screenWidth, wpx } from "../../../../utilities/responsive";
 import { removeState, setCount, setRegistrationData } from "../../../../utilities/MyStore/Dashboard/dashboard";
 
 function LoginScreen() {
@@ -36,65 +36,65 @@ function LoginScreen() {
     const [signUpPassword, setSignUpPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showhidePassword, setshowhidePassword] = useState(true);
-    const [LoginInfo,setLoginInfo]=useState([]);
+    const [LoginInfo, setLoginInfo] = useState([]);
     const dispatch = useDispatch();
 
     const data = useSelector((state) => state?.dashboardData?.registrationData);
     const register_count = useSelector((state) => state.dashboardData.count);
 
-    
+
     useEffect(() => {
-          retrieveData();
+        retrieveData();
         //   removeData();
     }, [])
 
 
     const storeData = async (data) => {
         try {
-          // You can store a key-value pair
-          
-          let array=[...LoginInfo,data];
-          const userJSON = JSON.stringify(array);
-          await AsyncStorage.setItem('logindata', userJSON);
-          console.log('Data stored successfully.');
+            // You can store a key-value pair
+
+            let array = [...LoginInfo, data];
+            const userJSON = JSON.stringify(array);
+            await AsyncStorage.setItem('logindata', userJSON);
+            console.log('Data stored successfully.');
         } catch (error) {
-          console.error('Error storing data: ', error);
+            console.error('Error storing data: ', error);
         }
         retrieveData();
-      };
-      const removeData = async () => {
+    };
+    const removeData = async () => {
         try {
-          await AsyncStorage.removeItem('logindata');
-          console.log('Data removed successfully.');
+            await AsyncStorage.removeItem('logindata');
+            console.log('Data removed successfully.');
         } catch (error) {
-          console.error('Error removing data: ', error);
+            console.error('Error removing data: ', error);
         }
-      };
-      const retrieveData = async () => {
+    };
+    const retrieveData = async () => {
         try {
             const data = await AsyncStorage.getItem('logindata');
-          if (data !== null) {
-            // Data is retrieved successfully
-            const user = JSON.parse(data);
+            if (data !== null) {
+                // Data is retrieved successfully
+                const user = JSON.parse(data);
 
-            setLoginInfo(user);
-            
-          } else {
-            // Data doesn't exist
-            console.log('No data found.');
-          }
+                setLoginInfo(user);
+
+            } else {
+                // Data doesn't exist
+                console.log('No data found.');
+            }
         } catch (error) {
-          console.error('Error retrieving data: ', error);
+            console.error('Error retrieving data: ', error);
         }
-      };
+    };
     const handleButtonClick = (values) => {
 
-        
+
 
         setIsLoading(true);
         setTimeout(() => {
             var isExist = false;
-            if(LoginInfo.length>0){
+            if (LoginInfo.length > 0) {
                 LoginInfo?.map((item, index) => {
                     if (values?.username?.toLowerCase() == item?.name?.toLowerCase() && values?.password == item?.password) {
                         isExist = true;
@@ -102,7 +102,7 @@ function LoginScreen() {
                     }
                 })
             }
-           
+
             if (isExist) {
                 navigation.navigate("NewDashBoard");
             } else {
@@ -147,7 +147,7 @@ function LoginScreen() {
                                 source={Images.ithuntlogo}
                                 style={Styles.loginLogo}
                             />
-                            <Text style={{ fontSize: 12, color: "#194880", marginTop: screenHeight * 0.02 }}>IT Hunt the Institute of Computer Technology</Text>
+                            <Text style={{ fontSize: getFontSize(14), color: "#194880", marginTop: screenHeight * 0.02 }}>IT Hunt the Institute of Computer Technology</Text>
                         </View>
                         <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: screenHeight * 0.03, padding: 3 }}>
                             <TouchableOpacity
@@ -173,8 +173,8 @@ function LoginScreen() {
                             activeView == 0 ?
                                 <>
                                     <View style={{ alignItems: "center", marginTop: screenHeight * 0.06 }}>
-                                        <Text style={{ fontSize: 18, color: "#194880" }}>Welcome</Text>
-                                        <Text style={{ color: "#8C8896", fontSize: 14 }}>Kindly provide your login credentials.</Text>
+                                        <Text style={{ fontSize: getFontSize(20), color: "#194880" }}>Welcome</Text>
+                                        <Text style={{ color: "#8C8896", fontSize: getFontSize(16) }}>Kindly provide your login credentials.</Text>
                                     </View>
 
                                     <Formik
@@ -186,9 +186,9 @@ function LoginScreen() {
 
                                             <View style={Styles.inputView}>
 
-                                                <View style={{ marginTop: screenHeight * 0.01 }}>
-                                                    <View style={{ top: 8, left: 10, backgroundColor: "white", width: screenWidth * 0.16, zIndex: 10 }}>
-                                                        <Text style={{ color: "#00B2F4", fontSize: 15, }}>User Id:</Text>
+                                                <View style={{ marginTop: hpx(10) }}>
+                                                    <View style={{ top: 8, left: 10, backgroundColor: "white", width: wpx(60), zIndex: 10 }}>
+                                                        <Text style={{ color: "#00B2F4", fontSize: getFontSize(15), }}>User Id:</Text>
                                                     </View>
                                                     <TextInput
                                                         name="username"
@@ -204,9 +204,9 @@ function LoginScreen() {
                                                     }
                                                 </View>
 
-                                                <View style={{ marginTop: screenHeight * 0.03 }}>
-                                                    <View style={{ top: 8, left: 10, backgroundColor: "white", width: screenWidth * 0.23, zIndex: 10 }}>
-                                                        <Text style={{ color: "#00B2F4", fontSize: 15 }}>Password:</Text>
+                                                <View style={{ marginTop: hpx(10) }}>
+                                                    <View style={{ top: 8, left: 10, backgroundColor: "white", width: wpx(80), zIndex: 10 }}>
+                                                        <Text style={{ color: "#00B2F4", fontSize: getFontSize(15) }}>Password:</Text>
                                                     </View>
                                                     <TextInput
                                                         name="password"
@@ -225,12 +225,12 @@ function LoginScreen() {
 
                                                         <Image
                                                             source={showhidePassword ? Images.Password_Show : Images.Password_Hide}
-                                                            style={{ width: 20, height: 20, alignSelf: "flex-end", top: -33, right: 16, }}
+                                                            style={{ width: dynamicSize(20), height: dynamicSize(20), alignSelf: "flex-end", top: -33, right: 16, }}
                                                         />
 
                                                     </TouchableOpacity>
                                                     {errors.password &&
-                                                        <Text style={{ fontSize: 10, color: 'red', top: -20 }}>{errors.password}</Text>
+                                                        <Text style={{ fontSize: getFontSize(10), color: 'red', top: -20 }}>{errors.password}</Text>
                                                     }
                                                 </View>
                                                 <View style={{}}>
@@ -247,12 +247,12 @@ function LoginScreen() {
                                 :
                                 <View style={Styles.inputView}>
                                     <View style={{ alignItems: "center", marginTop: screenHeight * 0.02 }}>
-                                        <Text style={{ fontSize: 18, color: "#194880" }}>Welcome</Text>
-                                        <Text style={{ color: "#8C8896", fontSize: 14 }}>Kindly Fill your Details.</Text>
+                                        <Text style={{ fontSize: getFontSize(18), color: "#194880" }}>Welcome</Text>
+                                        <Text style={{ color: "#8C8896", fontSize: getFontSize(14) }}>Kindly Fill your Details.</Text>
                                     </View>
-                                    <View style={{ marginTop: 10 }}>
-                                        <View style={{ top: 8, left: 10, backgroundColor: "white", width: 60, zIndex: 10 }}>
-                                            <Text style={{ color: "#00B2F4", fontSize: 15, }}> Name:</Text>
+                                    <View style={{ marginTop: hpx(10) }}>
+                                        <View style={{ top: 8, left: 10, backgroundColor: "white", width: wpx(60), zIndex: 10 }}>
+                                            <Text style={{ color: "#00B2F4", fontSize: getFontSize(15), }}> Name:</Text>
                                         </View>
                                         <TextInput
                                             name="username"
@@ -264,9 +264,9 @@ function LoginScreen() {
                                         />
 
                                     </View>
-                                    <View style={{ marginTop: screenHeight * 0.02 }}>
-                                        <View style={{ top: 8, left: 10, backgroundColor: "white", width: 50, zIndex: 10 }}>
-                                            <Text style={{ color: "#00B2F4", fontSize: 15, }}>Email:</Text>
+                                    <View style={{ marginTop: hpx(10) }}>
+                                        <View style={{ top: 8, left: 10, backgroundColor: "white", width: wpx(50), zIndex: 10 }}>
+                                            <Text style={{ color: "#00B2F4", fontSize: getFontSize(15), }}>Email:</Text>
                                         </View>
                                         <TextInput
                                             name="email"
@@ -279,9 +279,9 @@ function LoginScreen() {
 
                                     </View>
 
-                                    <View style={{ marginTop: screenHeight * 0.02 }}>
-                                        <View style={{ top: 8, left: 10, backgroundColor: "white", width: 80, zIndex: 10 }}>
-                                            <Text style={{ color: "#00B2F4", fontSize: 15 }}>Password:</Text>
+                                    <View style={{ marginTop: hpx(10) }}>
+                                        <View style={{ top: 8, left: 10, backgroundColor: "white", width: wpx(80), zIndex: 10 }}>
+                                            <Text style={{ color: "#00B2F4", fontSize: getFontSize(15) }}>Password:</Text>
                                         </View>
                                         <TextInput
                                             name="password"
@@ -302,8 +302,8 @@ function LoginScreen() {
                                 </View>
                         }
                         <View style={{ alignItems: "center", marginTop: screenHeight * 0.02, marginBottom: 10 }}>
-                            <Text style={{ color: "#8C8896", fontSize: 14 }}>Powered By</Text>
-                            <Text style={{ color: "#194880", fontSize: 12 }}>IT HUNT</Text>
+                            <Text style={{ color: "#8C8896", fontSize: getFontSize(14) }}>Powered By</Text>
+                            <Text style={{ color: "#194880", fontSize: getFontSize(12) }}>IT HUNT</Text>
                         </View>
                     </ScrollView>
                 </View>
@@ -330,18 +330,18 @@ const Styles = StyleSheet.create({
         borderWidth: 0.6,
         borderColor: "#8C8896",
         borderRadius: 7,
-        paddingHorizontal: 10,
+        paddingHorizontal: wpx(10),
         color: "#194880",
-        fontSize: 16
+        fontSize: getFontSize(16)
     },
     headerImage: {
-        height: 110,
+        height: hpx(110),
         width: "100%",
     },
     loginLogo: {
-        width: screenWidth * 0.33,
-        height: screenHeight * 0.17,
-        borderRadius: 80,
+        width: dynamicSize(130),
+        height: dynamicSize(130),
+        borderRadius: hpx(80),
         resizeMode: "cover",
 
     },
@@ -349,12 +349,12 @@ const Styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "white",
-        paddingHorizontal: 20,
-        paddingVertical: 20,
+        paddingHorizontal: wpx(20),
+        paddingVertical: hpx(20),
     },
     loginButton: {
-        paddingHorizontal: 30,
-        paddingVertical: 10,
+        paddingHorizontal: wpx(30),
+        paddingVertical: hpx(12),
         backgroundColor: "#00B2F4",
         marginTop: screenHeight * 0.04,
         alignSelf: 'center',
@@ -363,7 +363,7 @@ const Styles = StyleSheet.create({
     },
     loginText: {
         color: "white",
-        fontSize: 16
+        fontSize: getFontSize(16)
     },
 
 

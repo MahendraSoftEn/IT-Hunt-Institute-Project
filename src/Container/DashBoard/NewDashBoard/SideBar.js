@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View, StyleSheet, Image } from "react-native";
 import Modal from 'react-native-modal';
 import { useDispatch } from "react-redux";
 import { removeState } from "../../../../utilities/MyStore/Dashboard/dashboard";
+import { dynamicSize, getFontSize, hpx, wpx } from "../../../../utilities/responsive";
 
 function SideBarComponent(props) {
 
@@ -167,23 +168,23 @@ export default SideBarComponent;
 const styles = StyleSheet.create({
 
     sideBarTextView:{
-        marginLeft: 10
+        marginLeft: wpx(12)
     },
     sideBarImage:{
-        width: 20,
-         height: 20,
+        width: dynamicSize(20),
+         height: dynamicSize(20),
           tintColor: "#00B2F4"
     },
     sideBarTopBorder:{
         height: 0.4,
          width: "100%", 
          backgroundColor: "#8C8896",
-          marginTop: 10
+          marginTop: hpx(13)
     },
     sideBarListBorder:{
         borderColor: "#E6E9EB",
          borderWidth: 0.8,
-          marginTop: 10,
+          marginTop: hpx(12),
            width: "100%",
             alignSelf: "center"
     },
@@ -194,30 +195,30 @@ const styles = StyleSheet.create({
     modalContent: {
         backgroundColor: 'white',
         flex: 1,
-        borderTopRightRadius: 25, // Adjust the border radius to make it look like a left side modal
-        borderBottomRightRadius: 25,
-        width: 200
+        borderTopRightRadius: 15, // Adjust the border radius to make it look like a left side modal
+        borderBottomRightRadius: 15,
+        width: wpx(220)
     },
     closeButton: {
         alignSelf: 'flex-end',
     },
     closeButtonText: {
-        fontSize: 18,
+        fontSize: getFontSize(18),
         fontWeight: 'bold',
         color: 'red',
     },
     modalText: {
-        fontSize: 18,
+        fontSize: getFontSize(18),
         fontWeight: 'bold',
     },
     logo: {
-        width: 70,
-        height: 70,
+        width: dynamicSize(75),
+        height: dynamicSize(75),
         resizeMode: 'contain',
     },
     sideBarListContainer: {
         flexDirection: "row",
         // justifyContent:"space-around",
-        marginTop: 25
+        marginTop: hpx(30)
     }
 })

@@ -1,5 +1,6 @@
 
 import { Dimensions, StyleSheet } from "react-native";
+import { dynamicSize, getFontSize, hpx, wpx } from "../../../../utilities/responsive";
 
 const width = Dimensions.get("screen").width;
 const height = Dimensions.get("screen").height;
@@ -10,8 +11,8 @@ const height = Dimensions.get("screen").height;
         // marginTop: 20
     },
     logo: {
-        width: 50,
-        height: 50,
+        width: dynamicSize(55),
+        height: dynamicSize(55),
         resizeMode: 'contain',
     },
     headerContainer: {
@@ -22,39 +23,39 @@ const height = Dimensions.get("screen").height;
     },
     borderStyle: {
         width: width,
-        height: 3,
+        height: hpx(3),
         backgroundColor: "#E6E9EB",
-        marginVertical: 10
+        marginVertical: hpx(11)
     },
     courseView: {
-        marginTop: 10,
-        marginHorizontal: 10
+        marginTop: hpx(11),
+        marginHorizontal: wpx(10)
     },
     headingView: {
-        marginTop: 10,
-        marginHorizontal: 10
+        marginTop: hpx(15),
+        marginHorizontal: wpx(10)
     },
     headingText: {
-        fontSize: 17,
+        fontSize: getFontSize(17),
         color: "#194880"
     },
     topicContainer: {
         alignItems: "center",
-        marginTop: 15
+        marginTop: hpx(17)
     },
     courseText: {
-        fontSize: 17,
+        fontSize: getFontSize(17),
         color: "#194880"
     },
     headerMain: {
-        height: height * 0.12,
+        height: hpx(120),
         backgroundColor: 'white',
         justifyContent: "center",
-        padding: 10
+        padding: wpx(13)
     },
     topBorder: {
         width: width,
-        height: 3,
+        height: hpx(3),
         backgroundColor: "#E6E9EB"
     },
     mainScrollableContainer: {
@@ -63,81 +64,81 @@ const height = Dimensions.get("screen").height;
     },
     TeachingList: {
         flexDirection: "row",
-        marginLeft: 15,
+        marginLeft: wpx(15),
         justifyContent: 'space-between',
-        padding: 20,
+        padding: wpx(20),
         borderRadius: 10,
         backgroundColor: "white",
         elevation: 5,
         borderColor: "#8C8896",
-        marginVertical: 10
+        marginVertical: hpx(14)
     },
     teacherLogo: {
-        width: 40,
-        height: 40,
-        resizeMode: "cover",
+        width: dynamicSize(45),
+        height: dynamicSize(45),
+        resizeMode: "contain",
         borderRadius: 50
     },
     teachingText: {
-        fontSize: 13,
+        fontSize: getFontSize(15),
         color: "#194880"
     },
     teachingSubject: {
-        fontSize: 10,
+        fontSize: getFontSize(13),
         color: "#8C8896"
     },
     headerText: {
-        fontSize: 14,
+        fontSize: getFontSize(14),
         textAlign: "center",
         color: "#194880"
     },
     programmingContainer: {
-        marginTop: 10,
+        marginTop: hpx(14),
         flexDirection: "row",
         backgroundColor: "white",
         borderWidth: 1,
         borderColor: "#E6E9EB",
         borderRadius: 7,
         width: width * 0.90,
-        paddingHorizontal: 10,
+        paddingHorizontal: wpx(12),
         justifyContent: "space-around"
     },
     courseContainerList: {
         flexDirection: "row",
-        marginLeft: 10,
+        marginLeft: wpx(12),
         borderRadius: 10,
-        padding: 5,
-        width: 170,
+        padding: wpx(6),
+        width: wpx(210),
         backgroundColor: "white",
         elevation: 5,
-        marginVertical: 10,
-        height: 90
+        marginVertical: hpx(13),
+        height: hpx(100)
     },
     courseImage: {
-        width: 80,
-        height: 80,
+        width: dynamicSize(85),
+        height: dynamicSize(85),
         resizeMode: "contain"
     },
     courseItem: {
-        marginLeft: 13,
+        marginLeft: wpx(13),
         alignSelf: "center"
     },
     courseDescription: {
-        fontSize: 10,
+        fontSize: getFontSize(10),
         color: "#8C8896"
     },
     topicImage: {
-        width: width * 0.13,
-        height: height * 0.08,
+        width: dynamicSize(70),
+        height: dynamicSize(80),
         resizeMode: "contain"
     },
     topicText: {
         textAlign: "center",
-        fontSize: 16,
+        fontSize: getFontSize(16),
         color: "#194880"
     },
     topicDescription: {
-        fontSize: 12,
+        fontSize: getFontSize(13),
         color: "#8C8896",
         textAlign: "center"
     },

@@ -8,6 +8,7 @@ import { HTML_question, IT_Tools_question, javascript_question, moduelData, pyth
 import { Courses } from '../../../../utilities/AllData/ithuntdata';
 import { teachingStaff } from '../../../../utilities/AllData/ithuntdata';
 import { View, Text, Image, dashBoardStylehee, TouchableOpacity, FlatList, ScrollView, LogBox, Dimensions } from 'react-native';
+import { dynamicSize } from '../../../../utilities/responsive';
 
 const width = Dimensions.get("screen").width;
 const height = Dimensions.get("screen").height;
@@ -61,7 +62,9 @@ function NewDashBoard() {
     const renderTeachingStaff = ({ item, index }) => {
 
         return (
-            <TouchableOpacity style={dashBoardStyle.TeachingList}>
+            <TouchableOpacity 
+            activeOpacity={0.8}
+            style={dashBoardStyle.TeachingList}>
                 <View style={{ flexDirection: "row" }}>
                     <View>
                         <Image
@@ -152,7 +155,7 @@ function NewDashBoard() {
                     navigation.navigate("News")
                  }}
                 >
-                    <Image style={{ width: 50, height: 50, alignSelf: "center" }} source={moduelData[0].Icon} />
+                    <Image style={{ width: dynamicSize(50), height: dynamicSize(50), alignSelf: "center" }} source={moduelData[0].Icon} />
                     <Text style={{textAlign:"center"}}>{moduelData[0].name}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{}}
@@ -160,7 +163,7 @@ function NewDashBoard() {
                     navigation.navigate("Fee")
                  }}
                 >
-                    <Image style={{ width: 50, height: 50, alignSelf: "center" }} source={moduelData[1].Icon} />
+                    <Image style={{ width: dynamicSize(50), height: dynamicSize(50), alignSelf: "center" }} source={moduelData[1].Icon} />
                     <Text style={{ textAlign: "center" }}>{moduelData[1].name}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
@@ -168,7 +171,7 @@ function NewDashBoard() {
                     navigation.navigate("ImageGallery")
                  }}
                 >
-                    <Image style={{ width: 50, height: 50, alignSelf: "center" }} source={moduelData[2].Icon} />
+                    <Image style={{ width: dynamicSize(50), height: dynamicSize(50), alignSelf: "center" }} source={moduelData[2].Icon} />
                     <Text>{moduelData[2].name}</Text>
                 </TouchableOpacity>
                 <View>
