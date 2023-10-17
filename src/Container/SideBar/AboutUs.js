@@ -1,75 +1,73 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Text, View,Image, ScrollView, StyleSheet } from 'react-native';
+import React from 'react';
+import { Text, View, Image, ScrollView, StyleSheet } from 'react-native';
 import BlueHeader from '../../Component/BlueHeader';
 import { Images } from '../../../utilities/Images';
-import { screenHeight } from '../../../utilities/responsive';
+import { dynamicSize, getFontSize, hpx, screenHeight, wpx } from '../../../utilities/responsive';
 
 
- function AboutUs() {
+function AboutUs() {
 
-  return (
-    <View style={{flex:1}}>
-        <BlueHeader
-         heading={"About Us"}
-        />
-        <ScrollView>
-        <View style={{margin:screenHeight*0.05}}>
-         <View style={{flexDirection:"row"}}>
-            <View style={{marginRight:10}}>
-                <Image
-                 source={Images.phoneIcon}
-                 style={{width:25,height:25}}
-
-                />
-            </View>
-            <View>
-                <Text style={{color:"#8C8896",fontSize:14}}>IT HUNT Application Version:</Text>
-                <Text style={{color:"#194880",fontSize:16,marginTop:5}}>1.0.1 1</Text>
-            </View>
-         </View>
-         <View style={{marginTop:screenHeight*0.04,flexDirection:"row"}}>
-            <View style={{marginRight:10}}>
-                <Image
-                 source={Images.websiteIcon}
-                 style={{width:25,height:25}}
-                />
-            </View>
-            <View>
-                <Text style={{color:"#8C8896",fontSize:14}}>Website:</Text>
-                <Text style={{color:"#194880",fontSize:16, marginTop:5}}>www.theithunt.com</Text>
-            </View>
-         </View>
-         <View style={{marginTop:screenHeight*0.04,flexDirection:"row"}}>
-            <View style={{marginRight:10}}>
-                <Image
-                 source={Images.emailIcon}
-                 style={{width:25,height:25}}
-                />
-            </View>
-            <View>
-                <Text style={{color:"#8C8896",fontSize:14}}>Email ID:</Text>
-                <Text style={{color:"#194880",fontSize:16,marginTop:5}}>aim.chauhan@gmail.com</Text>
-            </View>
-         </View>
-         </View>
-         <View style={{alignItems:"center",height:screenHeight*0.50,justifyContent:"flex-end"}}>
-            <Text style={{color:'#8C8896',fontSize:14}}>Powered By</Text>
-            <Text>IT HUNT</Text>
-            <Image 
-              source={Images.ithuntlogo}
-              style={{width:35,height:35}}
+    return (
+        <View style={{ flex: 1 }}>
+            <BlueHeader
+                heading={"About Us"}
             />
-            <View style={{}}>
-                <Text style={{color:"#8C8896",fontSize:13}}>Differ To Other And Deep Knowledge</Text>
-            </View>
-         </View>
-        </ScrollView>
-    </View>
-  );
+            <ScrollView>
+                <View style={{ margin: wpx(30) }}>
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={{ marginRight: wpx(10) }}>
+                            <Image
+                                source={Images.phoneIcon}
+                                style={{ width: dynamicSize(25), height: dynamicSize(25) }}
+
+                            />
+                        </View>
+                        <View>
+                            <Text style={{ color: "#8C8896", fontSize: getFontSize(16) }}>IT HUNT Application Version</Text>
+                            <Text style={{ color: "#194880", fontSize: getFontSize(16), marginTop: hpx(6) }}>1.0.1 1</Text>
+                        </View>
+                    </View>
+                    <View style={{ marginTop: wpx(30), flexDirection: "row" }}>
+                        <View style={{ marginRight: wpx(10) }}>
+                            <Image
+                                source={Images.websiteIcon}
+                                style={{ width: dynamicSize(25), height: dynamicSize(25) }}
+                            />
+                        </View>
+                        <View>
+                            <Text style={{ color: "#8C8896", fontSize: getFontSize(16) }}>Website:</Text>
+                            <Text style={{ color: "#194880", fontSize: getFontSize(16), marginTop: hpx(6) }}>www.theithunt.com</Text>
+                        </View>
+                    </View>
+                    <View style={{ marginTop: hpx(30), flexDirection: "row" }}>
+                        <View style={{ marginRight: wpx(10) }}>
+                            <Image
+                                source={Images.emailIcon}
+                                style={{ width: dynamicSize(25), height: dynamicSize(25) }}
+                            />
+                        </View>
+                        <View>
+                            <Text style={{ color: "#8C8896", fontSize: getFontSize(16) }}>Email ID:</Text>
+                            <Text style={{ color: "#194880", fontSize: getFontSize(16), marginTop: hpx(6) }}>aim.chauhan@gmail.com</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={{ alignItems: "center", height: screenHeight * 0.50, justifyContent: "flex-end" }}>
+                    <Text style={{ color: '#8C8896', fontSize: getFontSize(18) }}>Powered By</Text>
+                    <Text style={{ fontSize: getFontSize(15) }}>IT HUNT</Text>
+                    <Image
+                        source={Images.ithuntlogo}
+                        style={{ width: dynamicSize(40), height: dynamicSize(40) }}
+                    />
+                    <View style={{}}>
+                        <Text style={{ color: "#8C8896", fontSize: getFontSize(13) }}>Differ To Other And Deep Knowledge</Text>
+                    </View>
+                </View>
+            </ScrollView>
+        </View>
+    );
 }
 
 export default AboutUs;
 
-const styles=StyleSheet.create({
-    
-})
+

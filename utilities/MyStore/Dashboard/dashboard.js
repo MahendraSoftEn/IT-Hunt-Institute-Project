@@ -6,7 +6,8 @@ import { createSlice } from '@reduxjs/toolkit'
   name: 'dashboarddata',
   initialState:{
     registrationData:[],
-    count:0
+    count:0,
+    isloggedIn:false
   },
   reducers: {
     setRegistrationData(state,action){
@@ -19,6 +20,9 @@ import { createSlice } from '@reduxjs/toolkit'
     setCount(state,action){
       state.count=action.payload;
     },
+    setIsLoggedIn(state,action){
+      state.isloggedIn=action.payload;
+    },
     removeState(state,action){
       state.registrationData=[];
     }
@@ -26,6 +30,6 @@ import { createSlice } from '@reduxjs/toolkit'
 })
 
 // Action creators are generated for each case reducer function
-export const { setRegistrationData,removeState,setCount } = dashboard.actions
+export const { setRegistrationData,removeState,setCount,setIsLoggedIn } = dashboard.actions
 
 export default dashboard.reducer;

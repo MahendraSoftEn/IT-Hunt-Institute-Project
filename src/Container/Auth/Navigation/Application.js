@@ -32,7 +32,7 @@ function Application() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                
+              
                  <Stack.Screen 
                 name="LoginScreen"
                  component={LoginScreen}

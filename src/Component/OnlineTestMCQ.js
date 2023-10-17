@@ -4,6 +4,8 @@ import BlueHeader from './BlueHeader';
 import { python_question } from '../../utilities/AllData/ithuntdata';
 import OnlineSubmitView from './OnlineSubmitView';
 import { useDispatch, useSelector } from 'react-redux';
+import { getFontSize, hpx, screenHeight, screenWidth, wpx,dynamicSize } from '../../utilities/responsive';
+
 import { removeQuizState, setAttemptQuestion, setCorrectAnswer, setNonAttemptQuestion, setWrongAnswer } from '../../utilities/MyStore/MCQTest/QuizData';
 
 
@@ -78,9 +80,9 @@ function OnlineTestMCQ(props) {
       <View style={[styles.container]}>
 
         <View style={[styles.buttonContainer]}>
-          <View style={{ padding: 10, borderRadius: 10 }}>
-            <Text style={{ color: "#194880", fontSize: 20 }}>Attempted Question</Text>
-            <View style={{ backgroundColor: "#00B2F4", width: 50, height: 30, justifyContent: "center", alignSelf: "center", borderRadius: 3, marginVertical: 10 }}>
+          <View style={{ padding: wpx(10), borderRadius: 10 }}>
+            <Text style={{ color: "#194880", fontSize: getFontSize(20) }}>Attempted Question</Text>
+            <View style={{ backgroundColor: "#00B2F4", width: wpx(50), height: hpx(30), justifyContent: "center", alignSelf: "center", borderRadius: 3, marginVertical: hpx(10) }}>
               <Text style={{ color: "white", textAlign: "center", }}>{attemptQuestion}</Text>
             </View>
 
@@ -105,8 +107,8 @@ function OnlineTestMCQ(props) {
                         setVisible(true);
                       }}
                     />
-                    <View style={{width:250}}>
-                      <Text style={{ fontSize: 16, color: "#8C8896" }}> {OnlineTestData[questionIndex]?.option[0]}</Text>
+                    <View style={{width:wpx(250)}}>
+                      <Text style={{ fontSize: getFontSize(18), color: "#8C8896" }}> {OnlineTestData[questionIndex]?.option[0]}</Text>
                     </View>
                   </View>
                   <View style={[styles.optionMainView]}>
@@ -116,7 +118,7 @@ function OnlineTestMCQ(props) {
                         setVisible(true);
                       }}
                     />
-                    <View style={{width:250}}>
+                    <View style={{width:wpx(250)}}>
                       <Text style={[styles.optionText]}> {OnlineTestData[questionIndex]?.option[1]}</Text>
                     </View>
                   </View>
@@ -127,7 +129,7 @@ function OnlineTestMCQ(props) {
                         setVisible(true);
                       }}
                     />
-                    <View style={{width:250}}>
+                    <View style={{width:wpx(250)}}>
                       <Text style={[styles.optionText]}> {OnlineTestData[questionIndex]?.option[2]}</Text>
                     </View>
                   </View>
@@ -138,7 +140,7 @@ function OnlineTestMCQ(props) {
                         setVisible(true);
                       }}
                     />
-                    <View style={{width:250}}>
+                    <View style={{width:wpx(250)}}>
                       <Text style={[styles.optionText]}> {OnlineTestData[questionIndex]?.option[3]}</Text>
                     </View>
                   </View>
@@ -154,7 +156,7 @@ function OnlineTestMCQ(props) {
                   }
                 }}
               >
-                <Text style={{ fontSize: 16, color: "white" }}>{submit ? "Submit" : "Next"}</Text>
+                <Text style={{ fontSize: getFontSize(16), color: "white" }}>{submit ? "Submit" : "Next"}</Text>
               </TouchableOpacity>
             </View>
         }
@@ -175,57 +177,57 @@ const styles = StyleSheet.create({
   buttonContainer: {
     // justifyContent: "space-between",
     // flexDirection: "row",
-    marginHorizontal: 10,
+    marginHorizontal: wpx(10),
     alignSelf: "center"
   },
   optionViewContainer: {
     backgroundColor: "white",
     elevation: 4,
     padding: 1,
-    marginTop: 10
+    marginTop: hpx(10)
   },
   questionOptionContainer: {
     // borderWidth: 1,
     borderColor: "#8C889626",
     marginHorizontal: 4,
-    marginTop: 10,
+    marginTop: hpx(10),
     borderRadius: 4,
-    padding: 10,
+    padding: wpx(10),
     // elevation: 5,
     backgroundColor: "white"
   },
   questionText: {
-    fontSize: 18,
+    fontSize: getFontSize(20),
     textAlign: 'center',
     color: "#194880"
   },
   optionContainer: {
-    marginStart: 20,
-    marginTop: 20,
+    marginStart: wpx(20),
+    marginTop: hpx(20),
     alignItems: "flex-start"
   },
   optionMainView: {
     flexDirection: "row",
-    marginTop: 7
+    marginTop: hpx(10)
   },
   optionText: {
-    fontSize: 16,
+    fontSize: getFontSize(18),
     color: "#8C8896"
   },
   circleButton: {
     borderWidth: 0.4,
     borderColor: "#8C8896",
     borderRadius: 50,
-    width: 20,
-    height: 20,
-    marginRight: 10
+    width: dynamicSize(24),
+    height: dynamicSize(24),
+    marginRight: wpx(10),
   },
   nextButton: {
     backgroundColor: "#194880",
-    padding: 10,
+    padding: wpx(10),
     alignSelf: "flex-end",
-    margin: 10,
-    paddingHorizontal: 20,
+    margin: wpx(10),
+    paddingHorizontal: wpx(23),
     borderRadius: 10
   }
 })

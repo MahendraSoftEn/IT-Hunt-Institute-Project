@@ -347,6 +347,16 @@ export const NewsData=[
     date:"10 Feb, 2023"
   },
   {
+    name:"Holi Celebration",
+    description:"Dear Student,All student come at this date for celebrate Holi",
+    date:"10 Feb, 2023"
+  },
+  {
+    name:"Holi Celebration",
+    description:"Dear Student,All student come at this date for celebrate Holi",
+    date:"10 Feb, 2023"
+  },
+  {
     name:"Open House Celebration",
     description:"Dear Student,All student come at this date for celebrate Open House",
     date:"30 Mar, 2023"
