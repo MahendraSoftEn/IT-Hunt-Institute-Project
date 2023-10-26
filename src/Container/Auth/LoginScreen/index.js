@@ -56,7 +56,7 @@ function LoginScreen() {
             let array = [...LoginInfo, data];
             const userJSON = JSON.stringify(array);
             await AsyncStorage.setItem('logindata', userJSON);
-            console.log('Data stored successfully.');
+                        console.log('Data stored successfully.');
         } catch (error) {
             console.error('Error storing data: ', error);
         }
@@ -73,7 +73,7 @@ function LoginScreen() {
     const retrieveData = async () => {
         try {
             const data = await AsyncStorage.getItem('logindata');
-            if (data !== null) {
+                        if (data !== null) {
                 // Data is retrieved successfully
                 const user = JSON.parse(data);
 
@@ -104,7 +104,7 @@ function LoginScreen() {
             }
 
             if (isExist) {
-                navigation.navigate("NewDashBoard");
+                                navigation.navigate("NewDashBoard");
             } else {
                 alert("Invalid User id and Password");
             }
