@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import BlueHeader from '../../Component/BlueHeader';
 import { Images } from '../../../utilities/Images';
-import { hpx, wpx } from '../../../utilities/responsive';
+import { getFontSize, hpx, wpx } from '../../../utilities/responsive';
 
 function Profile() {
 
@@ -33,8 +33,8 @@ function Profile() {
                     </View>
                     <ScrollView
                         horizontal
-                        style={{ width: wpx(180), height: hpx(50), borderWidth: 1, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
-                        <Text>Name mahendra tell me about yourself</Text>
+                        style={{ width: wpx(180), height: hpx(50), borderWidth: 0.5, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
+                        <Text style={{fontSize:getFontSize(14),color:"#194880"}}>Mohan Kumar</Text>
                     </ScrollView>
                     </View>
                     <View>
@@ -43,8 +43,54 @@ function Profile() {
                     </View>
                     <ScrollView
                         horizontal
-                        style={{ width: wpx(180), height: hpx(50), borderWidth: 1, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
-                        <Text>Name </Text>
+                        style={{ width: wpx(180), height: hpx(50), borderWidth: 0.5, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
+                        <Text style={{fontSize:getFontSize(14),color:"#194880"}}>Mohan@gmail.com </Text>
+                    </ScrollView>
+                    </View>
+                   
+                </View>
+                <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:hpx(10)}}>
+                    <View>
+                    <View style={{ top: 15, left: 10, width: wpx(40), backgroundColor: "white", zIndex: 10, alignItems: "center" }}>
+                        <Text style={{ color: "#00B2F4" }}>DOB:</Text>
+                    </View>
+                    <ScrollView
+                        horizontal
+                        style={{ width: wpx(180), height: hpx(50), borderWidth: 0.5, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
+                        <Text style={{fontSize:getFontSize(14),color:"#194880"}}>12 jul 2002</Text>
+                    </ScrollView>
+                    </View>
+                    <View>
+                    <View style={{ top: 15, left: 10, width: wpx(120), backgroundColor: "white", zIndex: 10, alignItems: "center" }}>
+                        <Text style={{ color: "#00B2F4" }}>Mobile Number:</Text>
+                    </View>
+                    <ScrollView
+                        horizontal
+                        style={{ width: wpx(180), height: hpx(50), borderWidth: 0.5, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
+                        <Text style={{fontSize:getFontSize(14),color:"#194880"}}>8002345988 </Text>
+                    </ScrollView>
+                    </View>
+                   
+                </View>
+                <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:hpx(10)}}>
+                    <View>
+                    <View style={{ top: 15, left: 10, width: wpx(60), backgroundColor: "white", zIndex: 10, alignItems: "center" }}>
+                        <Text style={{ color: "#00B2F4" }}>Course:</Text>
+                    </View>
+                    <ScrollView
+                        horizontal
+                        style={{ width: wpx(180), height: hpx(50), borderWidth: 0.5, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
+                        <Text style={{fontSize:getFontSize(14),color:"#194880"}}>O Level</Text>
+                    </ScrollView>
+                    </View>
+                    <View>
+                    <View style={{ top: 15, left: 10, width: wpx(110), backgroundColor: "white", zIndex: 10, alignItems: "center" }}>
+                        <Text style={{ color: "#00B2F4" }}>Registration Id</Text>
+                    </View>
+                    <ScrollView
+                        horizontal
+                        style={{ width: wpx(180), height: hpx(50), borderWidth: 0.5, borderColor: "#8C8896", borderRadius: 5, marginTop: hpx(10), paddingVertical: hpx(10), paddingLeft: wpx(5) }}>
+                        <Text style={{fontSize:getFontSize(13),color:"#194880"}}>123 </Text>
                     </ScrollView>
                     </View>
                    
