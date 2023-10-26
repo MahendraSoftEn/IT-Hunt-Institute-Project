@@ -60,7 +60,6 @@ function SideBarComponent(props) {
                             navigation.navigate("ITFounder")
                         }}
                     >
-
                         <View>
                             <Image
                                 source={require('../../../../assets/DashBoard/SideBarIcon/ceo.png')}
@@ -71,30 +70,43 @@ function SideBarComponent(props) {
                         <View style={[styles.sideBarTextView]}>
                             <Text>Founder Of ITHUNT</Text>
                         </View>
-
-
                     </TouchableOpacity>
                     <View style={[styles.sideBarListBorder]} />
 
+                    <TouchableOpacity
+                        style={[styles.sideBarListContainer, { marginTop: 25 }]}
+                        onPress={() => {
+                            navigation.navigate("Profile")
+                        }}
+                    >
+                        <View>
+                            <Image
+                                source={require('../../../../assets/DashBoard/SideBarIcon/ceo.png')}
+                                style={[styles.sideBarImage]}
+                            />
+                        </View>
+
+                        <View style={[styles.sideBarTextView]}>
+                            <Text>My Profile</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={[styles.sideBarListBorder]} />
                     <TouchableOpacity 
                     style={[styles.sideBarListContainer]}
                     onPress={() => {
                         navigation.navigate("TeachingStaff")
                     }}
                     >
-
                         <View>
                             <Image
                                 source={require('../../../../assets/DashBoard/SideBarIcon/teacher.png')}
                                 style={[styles.sideBarImage]}
                             />
                         </View>
-
                         <View style={[styles.sideBarTextView]}>
                             <Text>Teaching Staff</Text>
                         </View>
                         <View />
-
                     </TouchableOpacity>
                     <View style={[styles.sideBarListBorder]} />
                     <TouchableOpacity 
@@ -144,7 +156,6 @@ function SideBarComponent(props) {
                         navigation.navigate("LoginScreen")
                     }}
                     >
-
                         <View>
                             <Image
                                 source={require('../../../../assets/DashBoard/SideBarIcon/feedback.png')}
@@ -166,7 +177,6 @@ function SideBarComponent(props) {
 export default SideBarComponent;
 
 const styles = StyleSheet.create({
-
     sideBarTextView:{
         marginLeft: wpx(12)
     },

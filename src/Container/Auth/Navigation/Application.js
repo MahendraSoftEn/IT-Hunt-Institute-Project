@@ -22,6 +22,7 @@ import ImageGallery from "../../ImageGallery";
 import FeeRecipt from "../../Fee/FeeRecipt";
 import OnlineTestMCQ from "../../../Component/OnlineTestMCQ";
 import PreivewImage from "../../ImageGallery/PreivewImage";
+import Profile from "../../SideBar/Profile";
 
 
 
@@ -137,6 +138,11 @@ function Application() {
                 <Stack.Screen 
                 name="PreivewImage" 
                 component={PreivewImage} 
+               options={{headerShown: false}}
+               />
+                <Stack.Screen 
+                name="Profile" 
+                component={Profile} 
                options={{headerShown: false}}
                />
                 
