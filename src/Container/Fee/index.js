@@ -71,6 +71,22 @@ function Fee() {
 
   const handleSubmit=()=>{
 
+      if(selectedYear==""){
+        alert("Please select year") ;
+        return;
+      } 
+      else if(registrationId==""){
+        alert("Please Enter Registration Id") ;
+        return;
+      }
+      else if(selectedStudent==""){
+        alert("Please Enter Name ") ;
+        return;
+      }
+      else if(amount==""){
+        alert("Please Enter Amount ") ;
+        return;
+      }
     let feeObj={
       year:selectedYear,
       registerId:registrationId,

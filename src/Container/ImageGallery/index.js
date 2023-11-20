@@ -7,27 +7,35 @@ import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingModal from '../../Component/LoadingModal';
+import { removeImageData, setImageList } from '../../../utilities/MyStore/Dashboard/ImageGallery';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function ImageGallery() {
 
+  const dispatch=useDispatch();
   const [visible, setVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [isLoading,setLoading]=useState(false);
   const navigation = useNavigation();
   const [imageData, setImageData] = useState([]);
+
+  const imageList=useSelector(state=>state.imageData.imageList);
+  console.log("imageList===>",imageList)
   
  useEffect(()=>{
 
-  retrieveData();
+  // retrieveData();
   // removeData();
+  // dispatch(removeImageData())
+  
  },[])
   const storeData = async (data) => {
     try {
       // You can store a key-value pair
       
       let array=[...imageData,data];
-      console.log("array data==>12",array.length);
+      
       const userJSON = JSON.stringify(array);
       await AsyncStorage.setItem('image', userJSON);
       console.log('Data stored successfully.');
@@ -46,14 +54,15 @@ function ImageGallery() {
   };
   const retrieveData = async () => {
     try {
+     
         const data = await AsyncStorage.getItem('image');
+        
       if (data !== null) {
         // Data is retrieved successfully
         const user = JSON.parse(data);
-         console.log("user===>",user)
+       
         setImageData(user);
-        // console.log("image data====>12",user);
-        
+                
       } else {
         // Data doesn't exist
         console.log('No data found.');
@@ -74,18 +83,16 @@ function ImageGallery() {
     ImagePicker.launchImageLibrary(
       {
         mediaType: 'photo',
-        includeBase64: false,
-        maxHeight: 200,
-        maxWidth: 200,
+        includeBase64: true,
         selectionLimit: 5
       },
       (response) => {
-        console.log(response);
+        
         setImageData(response?.assets);
         storeData(response?.assets);
         setLoading(false);
         // setSelectedFile(response)
-        // dispatch(setImageData([...imageData,...response.assets]));
+        dispatch(setImageList([...imageList,...response.assets]));
       },
     )
 
@@ -94,18 +101,17 @@ function ImageGallery() {
 
   const renderImageList = ({ item, index }) => {
 
-    // console.log("item===>",item)
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("PreivewImage", { imageData: item[0]?.uri })
+          navigation.navigate("PreivewImage", { imageData: item?.uri })
         }}
         style={{ margin: 7 }}
         key={item.id}
         >
 
         <Image
-          source={{ uri: item[0]?.uri }}
+          source={{ uri: item?.uri }}
           resizeMode='stretch'
           style={{ width: 100, height: 100 }}
         />
@@ -122,10 +128,11 @@ function ImageGallery() {
       />
 <LoadingModal isVisible={isLoading} />
       <View style={{margin:5,flex:1}}>
+       
           <FlatList 
           numColumns={3}
           keyExtractor={keyExtractor}
-           data={imageData}
+           data={imageList}
            renderItem={renderImageList}
           />
         </View>

@@ -23,7 +23,7 @@ import LoadingModal from "../../../Component/LoadingModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginValidationSchema } from "../../../../utilities/Validation";
 import { dynamicSize, getFontSize, hpx, screenHeight, screenWidth, wpx } from "../../../../utilities/responsive";
-import { removeState, setCount, setRegistrationData } from "../../../../utilities/MyStore/Dashboard/dashboard";
+import { removeState, setCount, setIsLoggedIn, setRegistrationData } from "../../../../utilities/MyStore/Dashboard/dashboard";
 
 function LoginScreen() {
 
@@ -44,7 +44,12 @@ function LoginScreen() {
 
 
     useEffect(() => {
-        retrieveData();
+        
+        navigation.addListener("focus", () => {
+            retrieveData();
+          });
+          const unsubscribe = () => navigation.removeListener("focus");
+          return unsubscribe;
         //   removeData();
     }, [])
 
@@ -56,6 +61,7 @@ function LoginScreen() {
             let array = [...LoginInfo, data];
             const userJSON = JSON.stringify(array);
             await AsyncStorage.setItem('logindata', userJSON);
+            await AsyncStorage.setItem('islogged', true);
             console.log('Data stored successfully.');
         } catch (error) {
             console.error('Error storing data: ', error);
@@ -71,16 +77,19 @@ function LoginScreen() {
         }
     };
     const retrieveData = async () => {
+
+        
         try {
             const data = await AsyncStorage.getItem('logindata');
             if (data !== null) {
                 // Data is retrieved successfully
                 const user = JSON.parse(data);
-
+                
                 setLoginInfo(user);
 
             } else {
                 // Data doesn't exist
+                setLoginInfo([]);
                 console.log('No data found.');
             }
         } catch (error) {
@@ -88,8 +97,6 @@ function LoginScreen() {
         }
     };
     const handleButtonClick = (values) => {
-
-
 
         setIsLoading(true);
         setTimeout(() => {
@@ -104,6 +111,7 @@ function LoginScreen() {
             }
 
             if (isExist) {
+                dispatch(setIsLoggedIn(true));
                 navigation.navigate("NewDashBoard");
             } else {
                 alert("Invalid User id and Password");
@@ -113,6 +121,7 @@ function LoginScreen() {
             setPassword("");
         }, 3000);
     }
+
     const registerStudent = () => {
 
         setIsLoading(true);
@@ -134,6 +143,8 @@ function LoginScreen() {
             setActiveView(0);
         }, 3000)
     }
+
+
     return (
         <KeyboardAvoidingView style={Styles.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

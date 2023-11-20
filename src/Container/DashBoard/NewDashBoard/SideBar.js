@@ -4,7 +4,7 @@ import React from "react";
 import { Text, TouchableOpacity, View, StyleSheet, Image } from "react-native";
 import Modal from 'react-native-modal';
 import { useDispatch } from "react-redux";
-import { removeState } from "../../../../utilities/MyStore/Dashboard/dashboard";
+import { removeState, setIsLoggedIn } from "../../../../utilities/MyStore/Dashboard/dashboard";
 import { dynamicSize, getFontSize, hpx, wpx } from "../../../../utilities/responsive";
 
 function SideBarComponent(props) {
@@ -152,8 +152,9 @@ function SideBarComponent(props) {
                     <View style={[styles.sideBarListBorder]} />
                     <TouchableOpacity style={[styles.sideBarListContainer]}
                      onPress={() => {
-                          removeData();
+                        //   removeData();
                         navigation.navigate("LoginScreen")
+                        dispatch(removeState());
                     }}
                     >
                         <View>

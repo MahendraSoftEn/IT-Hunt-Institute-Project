@@ -25,6 +25,7 @@ import { createSlice } from '@reduxjs/toolkit'
     },
     removeState(state,action){
       state.registrationData=[];
+      state.isloggedIn=false;
     }
   },
 })

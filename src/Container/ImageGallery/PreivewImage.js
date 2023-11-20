@@ -11,26 +11,21 @@ function PreivewImage(props) {
 
     const images = [
         {
-            uri: image
+            url: image
         }
     ];
 
     return (
-        <View style={{ backgroundColor:"white" }}>
-
+        <View style={{ backgroundColor:"white",flex:1 }}>
             <BlueHeader
                 heading={"Preview Image"}
             />
-
-            <Image
-                source={{ uri: image }}
-                style={{ width: screenWidth, height: screenHeight }}
-            />
-           
-            {/* <ImageViewer imageUrls={images}/> */}
-           
-            
-
+           <View style={{flex:1}}>
+             <ImageViewer 
+             imageUrls={images}
+             backgroundColor='white'
+             />
+           </View>
         </View>
     );
 }

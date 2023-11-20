@@ -3,6 +3,7 @@ import ReduxSlice from './ReduxSlice'
 import StudentStore from './StudentStore'
 import dashboard from './Dashboard/dashboard'
 import QuizData from './MCQTest/QuizData'
+import ImageGallery from './Dashboard/ImageGallery'
 
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
     reduxData: ReduxSlice,
     studentList:StudentStore,
     dashboardData:dashboard,
-    QuizData:QuizData
+    QuizData:QuizData,
+    imageData:ImageGallery
     
   },
 })
